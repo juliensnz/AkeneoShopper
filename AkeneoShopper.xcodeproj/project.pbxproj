@@ -1,0 +1,701 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BF7D522D25B1E57700499C85 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D522C25B1E57700499C85 /* Tests_iOS.swift */; };
+		BF7D523825B1E57700499C85 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D523725B1E57700499C85 /* Tests_macOS.swift */; };
+		BF7D523A25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D521125B1E57300499C85 /* AkeneoShopperApp.swift */; };
+		BF7D523B25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D521125B1E57300499C85 /* AkeneoShopperApp.swift */; };
+		BF7D523C25B1E57700499C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D521225B1E57300499C85 /* ContentView.swift */; };
+		BF7D523D25B1E57700499C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D521225B1E57300499C85 /* ContentView.swift */; };
+		BF7D523E25B1E57700499C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF7D521325B1E57700499C85 /* Assets.xcassets */; };
+		BF7D523F25B1E57700499C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF7D521325B1E57700499C85 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BF7D522925B1E57700499C85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF7D520C25B1E57300499C85 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF7D521725B1E57700499C85;
+			remoteInfo = "AkeneoShopper (iOS)";
+		};
+		BF7D523425B1E57700499C85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF7D520C25B1E57300499C85 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF7D521F25B1E57700499C85;
+			remoteInfo = "AkeneoShopper (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BF7D521125B1E57300499C85 /* AkeneoShopperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkeneoShopperApp.swift; sourceTree = "<group>"; };
+		BF7D521225B1E57300499C85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BF7D521325B1E57700499C85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BF7D521825B1E57700499C85 /* AkeneoShopper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AkeneoShopper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF7D521B25B1E57700499C85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF7D522025B1E57700499C85 /* AkeneoShopper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AkeneoShopper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF7D522225B1E57700499C85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF7D522325B1E57700499C85 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		BF7D522825B1E57700499C85 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF7D522C25B1E57700499C85 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		BF7D522E25B1E57700499C85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF7D523325B1E57700499C85 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF7D523725B1E57700499C85 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		BF7D523925B1E57700499C85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BF7D521525B1E57700499C85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7D521D25B1E57700499C85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7D522525B1E57700499C85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7D523025B1E57700499C85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BF7D520B25B1E57300499C85 = {
+			isa = PBXGroup;
+			children = (
+				BF7D521025B1E57300499C85 /* Shared */,
+				BF7D521A25B1E57700499C85 /* iOS */,
+				BF7D522125B1E57700499C85 /* macOS */,
+				BF7D522B25B1E57700499C85 /* Tests iOS */,
+				BF7D523625B1E57700499C85 /* Tests macOS */,
+				BF7D521925B1E57700499C85 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BF7D521025B1E57300499C85 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				BF7D521125B1E57300499C85 /* AkeneoShopperApp.swift */,
+				BF7D521225B1E57300499C85 /* ContentView.swift */,
+				BF7D521325B1E57700499C85 /* Assets.xcassets */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		BF7D521925B1E57700499C85 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF7D521825B1E57700499C85 /* AkeneoShopper.app */,
+				BF7D522025B1E57700499C85 /* AkeneoShopper.app */,
+				BF7D522825B1E57700499C85 /* Tests iOS.xctest */,
+				BF7D523325B1E57700499C85 /* Tests macOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF7D521A25B1E57700499C85 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				BF7D521B25B1E57700499C85 /* Info.plist */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		BF7D522125B1E57700499C85 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				BF7D522225B1E57700499C85 /* Info.plist */,
+				BF7D522325B1E57700499C85 /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		BF7D522B25B1E57700499C85 /* Tests iOS */ = {
+			isa = PBXGroup;
+			children = (
+				BF7D522C25B1E57700499C85 /* Tests_iOS.swift */,
+				BF7D522E25B1E57700499C85 /* Info.plist */,
+			);
+			path = "Tests iOS";
+			sourceTree = "<group>";
+		};
+		BF7D523625B1E57700499C85 /* Tests macOS */ = {
+			isa = PBXGroup;
+			children = (
+				BF7D523725B1E57700499C85 /* Tests_macOS.swift */,
+				BF7D523925B1E57700499C85 /* Info.plist */,
+			);
+			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BF7D521725B1E57700499C85 /* AkeneoShopper (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF7D524225B1E57700499C85 /* Build configuration list for PBXNativeTarget "AkeneoShopper (iOS)" */;
+			buildPhases = (
+				BF7D521425B1E57700499C85 /* Sources */,
+				BF7D521525B1E57700499C85 /* Frameworks */,
+				BF7D521625B1E57700499C85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AkeneoShopper (iOS)";
+			productName = "AkeneoShopper (iOS)";
+			productReference = BF7D521825B1E57700499C85 /* AkeneoShopper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BF7D521F25B1E57700499C85 /* AkeneoShopper (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF7D524525B1E57700499C85 /* Build configuration list for PBXNativeTarget "AkeneoShopper (macOS)" */;
+			buildPhases = (
+				BF7D521C25B1E57700499C85 /* Sources */,
+				BF7D521D25B1E57700499C85 /* Frameworks */,
+				BF7D521E25B1E57700499C85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AkeneoShopper (macOS)";
+			productName = "AkeneoShopper (macOS)";
+			productReference = BF7D522025B1E57700499C85 /* AkeneoShopper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BF7D522725B1E57700499C85 /* Tests iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF7D524825B1E57700499C85 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
+			buildPhases = (
+				BF7D522425B1E57700499C85 /* Sources */,
+				BF7D522525B1E57700499C85 /* Frameworks */,
+				BF7D522625B1E57700499C85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF7D522A25B1E57700499C85 /* PBXTargetDependency */,
+			);
+			name = "Tests iOS";
+			productName = "Tests iOS";
+			productReference = BF7D522825B1E57700499C85 /* Tests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		BF7D523225B1E57700499C85 /* Tests macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF7D524B25B1E57700499C85 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildPhases = (
+				BF7D522F25B1E57700499C85 /* Sources */,
+				BF7D523025B1E57700499C85 /* Frameworks */,
+				BF7D523125B1E57700499C85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF7D523525B1E57700499C85 /* PBXTargetDependency */,
+			);
+			name = "Tests macOS";
+			productName = "Tests macOS";
+			productReference = BF7D523325B1E57700499C85 /* Tests macOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BF7D520C25B1E57300499C85 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					BF7D521725B1E57700499C85 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					BF7D521F25B1E57700499C85 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					BF7D522725B1E57700499C85 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = BF7D521725B1E57700499C85;
+					};
+					BF7D523225B1E57700499C85 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = BF7D521F25B1E57700499C85;
+					};
+				};
+			};
+			buildConfigurationList = BF7D520F25B1E57300499C85 /* Build configuration list for PBXProject "AkeneoShopper" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BF7D520B25B1E57300499C85;
+			productRefGroup = BF7D521925B1E57700499C85 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BF7D521725B1E57700499C85 /* AkeneoShopper (iOS) */,
+				BF7D521F25B1E57700499C85 /* AkeneoShopper (macOS) */,
+				BF7D522725B1E57700499C85 /* Tests iOS */,
+				BF7D523225B1E57700499C85 /* Tests macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BF7D521625B1E57700499C85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF7D523E25B1E57700499C85 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7D521E25B1E57700499C85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF7D523F25B1E57700499C85 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7D522625B1E57700499C85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7D523125B1E57700499C85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BF7D521425B1E57700499C85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF7D523C25B1E57700499C85 /* ContentView.swift in Sources */,
+				BF7D523A25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7D521C25B1E57700499C85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF7D523D25B1E57700499C85 /* ContentView.swift in Sources */,
+				BF7D523B25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7D522425B1E57700499C85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF7D522D25B1E57700499C85 /* Tests_iOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7D522F25B1E57700499C85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF7D523825B1E57700499C85 /* Tests_macOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BF7D522A25B1E57700499C85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF7D521725B1E57700499C85 /* AkeneoShopper (iOS) */;
+			targetProxy = BF7D522925B1E57700499C85 /* PBXContainerItemProxy */;
+		};
+		BF7D523525B1E57700499C85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF7D521F25B1E57700499C85 /* AkeneoShopper (macOS) */;
+			targetProxy = BF7D523425B1E57700499C85 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BF7D524025B1E57700499C85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BF7D524125B1E57700499C85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		BF7D524325B1E57700499C85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M2H45PF48T;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fr.nchez.AkeneoShopper;
+				PRODUCT_NAME = AkeneoShopper;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BF7D524425B1E57700499C85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M2H45PF48T;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fr.nchez.AkeneoShopper;
+				PRODUCT_NAME = AkeneoShopper;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BF7D524625B1E57700499C85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = M2H45PF48T;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.nchez.AkeneoShopper;
+				PRODUCT_NAME = AkeneoShopper;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		BF7D524725B1E57700499C85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = M2H45PF48T;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.nchez.AkeneoShopper;
+				PRODUCT_NAME = AkeneoShopper;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		BF7D524925B1E57700499C85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M2H45PF48T;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.nchez.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "AkeneoShopper (iOS)";
+			};
+			name = Debug;
+		};
+		BF7D524A25B1E57700499C85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M2H45PF48T;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.nchez.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "AkeneoShopper (iOS)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BF7D524C25B1E57700499C85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = M2H45PF48T;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.nchez.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "AkeneoShopper (macOS)";
+			};
+			name = Debug;
+		};
+		BF7D524D25B1E57700499C85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = M2H45PF48T;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.nchez.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "AkeneoShopper (macOS)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BF7D520F25B1E57300499C85 /* Build configuration list for PBXProject "AkeneoShopper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF7D524025B1E57700499C85 /* Debug */,
+				BF7D524125B1E57700499C85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF7D524225B1E57700499C85 /* Build configuration list for PBXNativeTarget "AkeneoShopper (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF7D524325B1E57700499C85 /* Debug */,
+				BF7D524425B1E57700499C85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF7D524525B1E57700499C85 /* Build configuration list for PBXNativeTarget "AkeneoShopper (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF7D524625B1E57700499C85 /* Debug */,
+				BF7D524725B1E57700499C85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF7D524825B1E57700499C85 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF7D524925B1E57700499C85 /* Debug */,
+				BF7D524A25B1E57700499C85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF7D524B25B1E57700499C85 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF7D524C25B1E57700499C85 /* Debug */,
+				BF7D524D25B1E57700499C85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BF7D520C25B1E57300499C85 /* Project object */;
+}
