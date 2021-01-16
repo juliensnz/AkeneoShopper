@@ -15,6 +15,10 @@
 		BF7D523D25B1E57700499C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D521225B1E57300499C85 /* ContentView.swift */; };
 		BF7D523E25B1E57700499C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF7D521325B1E57700499C85 /* Assets.xcassets */; };
 		BF7D523F25B1E57700499C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF7D521325B1E57700499C85 /* Assets.xcassets */; };
+		BF7D525525B1E61100499C85 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D525425B1E61100499C85 /* ProductView.swift */; };
+		BF7D526025B1E63700499C85 /* ProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D525F25B1E63700499C85 /* ProductList.swift */; };
+		BF7D526B25B1E7CD00499C85 /* AkeneoApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D526A25B1E7CD00499C85 /* AkeneoApi.swift */; };
+		BF7D527325B1EE2D00499C85 /* ProductListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D527225B1EE2D00499C85 /* ProductListStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		BF7D523325B1E57700499C85 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7D523725B1E57700499C85 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		BF7D523925B1E57700499C85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF7D525425B1E61100499C85 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
+		BF7D525F25B1E63700499C85 /* ProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductList.swift; sourceTree = "<group>"; };
+		BF7D526A25B1E7CD00499C85 /* AkeneoApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkeneoApi.swift; sourceTree = "<group>"; };
+		BF7D527225B1EE2D00499C85 /* ProductListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,10 @@
 		BF7D521025B1E57300499C85 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				BF7D527025B1EE1A00499C85 /* Application */,
+				BF7D526925B1E7BB00499C85 /* Infrastructure */,
+				BF7D525E25B1E61700499C85 /* Model */,
+				BF7D525225B1E5FC00499C85 /* Views */,
 				BF7D521125B1E57300499C85 /* AkeneoShopperApp.swift */,
 				BF7D521225B1E57300499C85 /* ContentView.swift */,
 				BF7D521325B1E57700499C85 /* Assets.xcassets */,
@@ -149,6 +161,54 @@
 				BF7D523925B1E57700499C85 /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		BF7D525225B1E5FC00499C85 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BF7D525325B1E60400499C85 /* Product */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BF7D525325B1E60400499C85 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				BF7D525425B1E61100499C85 /* ProductView.swift */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		BF7D525E25B1E61700499C85 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BF7D525F25B1E63700499C85 /* ProductList.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BF7D526925B1E7BB00499C85 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				BF7D526A25B1E7CD00499C85 /* AkeneoApi.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		BF7D527025B1EE1A00499C85 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				BF7D527125B1EE2100499C85 /* Store */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		BF7D527125B1EE2100499C85 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				BF7D527225B1EE2D00499C85 /* ProductListStore.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +369,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF7D523C25B1E57700499C85 /* ContentView.swift in Sources */,
+				BF7D527325B1EE2D00499C85 /* ProductListStore.swift in Sources */,
+				BF7D526025B1E63700499C85 /* ProductList.swift in Sources */,
+				BF7D525525B1E61100499C85 /* ProductView.swift in Sources */,
+				BF7D526B25B1E7CD00499C85 /* AkeneoApi.swift in Sources */,
 				BF7D523A25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
