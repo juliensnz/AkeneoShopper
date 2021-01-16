@@ -84,7 +84,7 @@ struct ProductView: View {
             .scaleEffect(self.isSettingsOpen ? 0.9 : 1)
             .shadow(color: Color.black.opacity(self.isSettingsOpen ? 0.2 : 0), radius: 20, x: 0.0, y: 10)
             .animation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 0))
-            .offset(y: self.isSettingsOpen ? -50 : 0)
+            .offset(y: self.isSettingsOpen ? -40 : 0)
 //            .edgesIgnoringSafeArea(.all)
         }
         
