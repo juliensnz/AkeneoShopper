@@ -14,6 +14,7 @@ struct ProductList: Codable {
 struct ProductListItem: Identifiable, Codable {
   let id: String;
   let identifier: String;
+  let label: String;
   let enabled: Bool;
   let family: String;
   let categories: [String]
@@ -21,6 +22,7 @@ struct ProductListItem: Identifiable, Codable {
   init(apiProduct: AkeneoApiProduct) {
     self.id = apiProduct.identifier;
     self.identifier = apiProduct.identifier;
+    self.label = apiProduct.identifier;
     self.enabled = apiProduct.enabled;
     self.family = apiProduct.family;
     self.categories = apiProduct.categories;
@@ -29,12 +31,14 @@ struct ProductListItem: Identifiable, Codable {
   init(
     id: String,
     identifier: String,
+    label: String,
     enabled: Bool,
     family: String,
     categories: [String]
   ) {
     self.id = id;
     self.identifier = identifier;
+    self.label = label;
     self.enabled = enabled;
     self.family = family;
     self.categories = categories;

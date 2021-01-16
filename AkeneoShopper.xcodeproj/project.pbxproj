@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF3B872925B310050008E9FB /* ImageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B872825B310050008E9FB /* ImageSliderView.swift */; };
+		BF3B874725B33FD10008E9FB /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B874625B33FD10008E9FB /* BlurView.swift */; };
+		BF3B87CA25B396E60008E9FB /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B87C925B396E50008E9FB /* Sidebar.swift */; };
 		BF7D522D25B1E57700499C85 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D522C25B1E57700499C85 /* Tests_iOS.swift */; };
 		BF7D523825B1E57700499C85 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D523725B1E57700499C85 /* Tests_macOS.swift */; };
 		BF7D523A25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D521125B1E57300499C85 /* AkeneoShopperApp.swift */; };
 		BF7D523B25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D521125B1E57300499C85 /* AkeneoShopperApp.swift */; };
 		BF7D523C25B1E57700499C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D521225B1E57300499C85 /* ContentView.swift */; };
-		BF7D523D25B1E57700499C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D521225B1E57300499C85 /* ContentView.swift */; };
 		BF7D523E25B1E57700499C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF7D521325B1E57700499C85 /* Assets.xcassets */; };
 		BF7D523F25B1E57700499C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF7D521325B1E57700499C85 /* Assets.xcassets */; };
 		BF7D525525B1E61100499C85 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D525425B1E61100499C85 /* ProductView.swift */; };
@@ -39,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF3B872825B310050008E9FB /* ImageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderView.swift; sourceTree = "<group>"; };
+		BF3B874625B33FD10008E9FB /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		BF3B87C925B396E50008E9FB /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		BF7D521125B1E57300499C85 /* AkeneoShopperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkeneoShopperApp.swift; sourceTree = "<group>"; };
 		BF7D521225B1E57300499C85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BF7D521325B1E57700499C85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,6 +96,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF3B872725B30FF30008E9FB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BF3B872825B310050008E9FB /* ImageSliderView.swift */,
+				BF3B874625B33FD10008E9FB /* BlurView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		BF3B87C825B396D90008E9FB /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				BF3B87C925B396E50008E9FB /* Sidebar.swift */,
+				BF7D521225B1E57300499C85 /* ContentView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		BF7D520B25B1E57300499C85 = {
 			isa = PBXGroup;
 			children = (
@@ -106,12 +129,12 @@
 		BF7D521025B1E57300499C85 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				BF3B87C825B396D90008E9FB /* Navigation */,
 				BF7D527025B1EE1A00499C85 /* Application */,
 				BF7D526925B1E7BB00499C85 /* Infrastructure */,
 				BF7D525E25B1E61700499C85 /* Model */,
 				BF7D525225B1E5FC00499C85 /* Views */,
 				BF7D521125B1E57300499C85 /* AkeneoShopperApp.swift */,
-				BF7D521225B1E57300499C85 /* ContentView.swift */,
 				BF7D521325B1E57700499C85 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -166,6 +189,7 @@
 		BF7D525225B1E5FC00499C85 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BF3B872725B30FF30008E9FB /* Components */,
 				BF7D525325B1E60400499C85 /* Product */,
 			);
 			path = Views;
@@ -369,11 +393,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF7D523C25B1E57700499C85 /* ContentView.swift in Sources */,
+				BF3B874725B33FD10008E9FB /* BlurView.swift in Sources */,
 				BF7D527325B1EE2D00499C85 /* ProductListStore.swift in Sources */,
 				BF7D526025B1E63700499C85 /* ProductList.swift in Sources */,
 				BF7D525525B1E61100499C85 /* ProductView.swift in Sources */,
 				BF7D526B25B1E7CD00499C85 /* AkeneoApi.swift in Sources */,
 				BF7D523A25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */,
+				BF3B87CA25B396E60008E9FB /* Sidebar.swift in Sources */,
+				BF3B872925B310050008E9FB /* ImageSliderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,7 +408,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF7D523D25B1E57700499C85 /* ContentView.swift in Sources */,
 				BF7D523B25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
