@@ -26,26 +26,6 @@ struct ProductView: View {
       
       GeometryReader { geometry in
         VStack(spacing: 0) {
-//          VStack {
-//            HStack {
-//              Text("Products")
-//                .font(.title)
-//                .bold()
-//                .onTapGesture {
-//                  isSettingsOpen.toggle()
-//                }
-//              Spacer()
-//              Image(systemName: "slider.horizontal.3")
-//                .font(.title2)
-//                .onTapGesture {
-//                  self.isSettingsOpen.toggle()
-//                }
-//            }.padding(.horizontal)
-//          }
-//          .zIndex(1)
-//          .padding(.top, 50)
-//          .padding(.bottom, 5)
-//          .background(Color("background_light"))
           
           VStack {
             HStack {
@@ -64,7 +44,7 @@ struct ProductView: View {
             }
           }
           .padding()
-          .frame(minWidth: 300, maxWidth: geometry.size.width * 0.8)
+          .frame(minWidth: 200, idealWidth: 250, maxWidth: 300)
           .frame(height: self.isSettingsOpen ? nil : 0)
           .background(Color("background_light"))
           .clipShape(RoundedRectangle(cornerRadius: 20))
@@ -73,7 +53,7 @@ struct ProductView: View {
           .shadow(color: Color.black.opacity(self.isSettingsOpen ? 0.2 : 0), radius: 20, x: 0.0, y: 10)
           .offset(y: self.isSettingsOpen ? 0 : -500)
           .animation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 0))
-          
+
           ProductListView(productListStore: self.productListStore, likedProducts: self.$likedProducts, expandedProducts: self.$expandedProducts)
             .background(Color("background_light"))
             .clipShape(RoundedRectangle(cornerRadius: self.isSettingsOpen ? 20 : 0))
@@ -93,6 +73,7 @@ struct ProductView: View {
     }
     .navigationTitle("Products")
     .toolbar(content: {
+      #if os(iOS)
       ToolbarItem(placement: .navigationBarTrailing) {
         Button(action: {
           isSettingsOpen.toggle()
@@ -100,6 +81,15 @@ struct ProductView: View {
           Image(systemName: "slider.horizontal.3")
         }
       }
+      #else
+      ToolbarItem(placement: .automatic) {
+        Button(action: {
+          isSettingsOpen.toggle()
+        }) {
+          Image(systemName: "slider.horizontal.3")
+        }
+      }
+      #endif
     })
   }
 }
@@ -188,9 +178,15 @@ struct ProductListItemView: View {
         displayProgressIndicator: isOpen
       ) {
         ForEach(0..<pictures.count) { index in
+          #if os(iOS)
           Image(uiImage: pictures[index])
             .resizable()
             .scaledToFill()
+          #else
+          Image(nsImage: pictures[index])
+            .resizable()
+            .scaledToFill()
+          #endif
         }
       }
       .frame(width: isOpen ? nil : 100, height: isOpen ? 250 : 100, alignment: .center)

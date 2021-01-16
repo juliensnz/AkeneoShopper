@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ImageSliderItem: Identifiable {
   let id = UUID();
+  #if os(iOS)
   let image: UIImage;
+  #else
+  let image: NSImage;
+  #endif
 }
 
 /**
@@ -84,12 +88,21 @@ struct ImageSliderView<Content>: View where Content: View {
   func makePageIndicator(currentPage: Int, pageCount: Int) -> some View {
     return HStack(spacing: 8) {
       ForEach(0..<pageCount) { index in
+        #if os(iOS)
         Rectangle()
           .foregroundColor(Color.white.opacity(currentPage == index ? 1 : 0))
           .background(BlurView(style: .systemUltraThinMaterial))
           .clipShape(Circle())
           .frame(width: 8, height: 8)
           .animation(.easeInOut)
+        #else
+        Rectangle()
+          .foregroundColor(Color.white.opacity(currentPage == index ? 1 : 0))
+          .background(Color.white.opacity(0.4))
+          .clipShape(Circle())
+          .frame(width: 8, height: 8)
+          .animation(.easeInOut)
+        #endif
       }
     }
     .padding(8)
@@ -101,6 +114,7 @@ struct ImageSliderView_Previews: PreviewProvider {
   @State var index = 0;
   static var previews: some View {
     ImageSliderView(currentIndex: Binding.constant(0), maxIndex: 5) {
+      #if os(iOS)
       Image(uiImage: #imageLiteral(resourceName: "FREKVENS_table"))
         .resizable()
         .scaledToFill()
@@ -110,6 +124,17 @@ struct ImageSliderView_Previews: PreviewProvider {
       Image(uiImage: #imageLiteral(resourceName: "FREKVENS_light"))
         .resizable()
         .scaledToFill()
+      #else
+      Image(nsImage: #imageLiteral(resourceName: "FREKVENS_table"))
+        .resizable()
+        .scaledToFill()
+      Image(nsImage: #imageLiteral(resourceName: "FREKVENS_sofa"))
+        .resizable()
+        .scaledToFill()
+      Image(nsImage: #imageLiteral(resourceName: "FREKVENS_light"))
+        .resizable()
+        .scaledToFill()
+      #endif
     }
     .background(Color.red)
     .frame(width: 300, height: 200)

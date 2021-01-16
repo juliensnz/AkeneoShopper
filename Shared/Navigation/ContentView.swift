@@ -7,12 +7,16 @@
 
 import SwiftUI
 
+#if os(iOS)
 let screen = UIScreen.main.bounds
+#endif
 
+#if os(iOS)
 //https://stackoverflow.com/questions/46192280/detect-if-the-device-is-iphone-x
 var hasTopNotch: Bool {
   return UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0 > 20
 }
+#endif
 
 struct ContentView: View {
   @ViewBuilder

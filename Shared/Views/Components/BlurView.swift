@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 struct BlurView: UIViewRepresentable {
   typealias UIViewType = UIView
   var style: UIBlurEffect.Style
@@ -33,3 +34,4 @@ struct BlurView: UIViewRepresentable {
     
   }
 }
+#endif

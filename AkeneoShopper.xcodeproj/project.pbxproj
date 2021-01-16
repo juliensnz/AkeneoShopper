@@ -21,6 +21,14 @@
 		BF7D526025B1E63700499C85 /* ProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D525F25B1E63700499C85 /* ProductList.swift */; };
 		BF7D526B25B1E7CD00499C85 /* AkeneoApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D526A25B1E7CD00499C85 /* AkeneoApi.swift */; };
 		BF7D527325B1EE2D00499C85 /* ProductListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D527225B1EE2D00499C85 /* ProductListStore.swift */; };
+		BFE92C8325B3ABBE00EF173B /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B87C925B396E50008E9FB /* Sidebar.swift */; };
+		BFE92C8825B3ABC000EF173B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D521225B1E57300499C85 /* ContentView.swift */; };
+		BFE92C8D25B3ABC300EF173B /* ProductListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D527225B1EE2D00499C85 /* ProductListStore.swift */; };
+		BFE92C9225B3ABC600EF173B /* AkeneoApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D526A25B1E7CD00499C85 /* AkeneoApi.swift */; };
+		BFE92C9725B3ABC800EF173B /* ProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D525F25B1E63700499C85 /* ProductList.swift */; };
+		BFE92C9C25B3ABCA00EF173B /* ImageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B872825B310050008E9FB /* ImageSliderView.swift */; };
+		BFE92CA125B3ABCC00EF173B /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B874625B33FD10008E9FB /* BlurView.swift */; };
+		BFE92CA625B3ABCE00EF173B /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D525425B1E61100499C85 /* ProductView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -408,7 +416,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE92C8325B3ABBE00EF173B /* Sidebar.swift in Sources */,
+				BFE92CA625B3ABCE00EF173B /* ProductView.swift in Sources */,
+				BFE92CA125B3ABCC00EF173B /* BlurView.swift in Sources */,
 				BF7D523B25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */,
+				BFE92C8825B3ABC000EF173B /* ContentView.swift in Sources */,
+				BFE92C9725B3ABC800EF173B /* ProductList.swift in Sources */,
+				BFE92C9225B3ABC600EF173B /* AkeneoApi.swift in Sources */,
+				BFE92C8D25B3ABC300EF173B /* ProductListStore.swift in Sources */,
+				BFE92C9C25B3ABCA00EF173B /* ImageSliderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
