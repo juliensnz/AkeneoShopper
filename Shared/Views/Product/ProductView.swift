@@ -21,30 +21,31 @@ struct ProductView: View {
   var body: some View {
     ZStack {
       Color("background_heavy")
+        .opacity(self.isSettingsOpen ? 1 : 0)
         .edgesIgnoringSafeArea(.all)
       
       GeometryReader { geometry in
         VStack(spacing: 0) {
-          VStack {
-            HStack {
-              Text("Products")
-                .font(.title)
-                .bold()
-                .onTapGesture {
-                  isSettingsOpen.toggle()
-                }
-              Spacer()
-              Image(systemName: "slider.horizontal.3")
-                .font(.title2)
-                .onTapGesture {
-                  self.isSettingsOpen.toggle()
-                }
-            }.padding(.horizontal)
-          }
-          .zIndex(1)
-          .padding(.top, 50)
-          .padding(.bottom, 5)
-          .background(Color("background_light"))
+//          VStack {
+//            HStack {
+//              Text("Products")
+//                .font(.title)
+//                .bold()
+//                .onTapGesture {
+//                  isSettingsOpen.toggle()
+//                }
+//              Spacer()
+//              Image(systemName: "slider.horizontal.3")
+//                .font(.title2)
+//                .onTapGesture {
+//                  self.isSettingsOpen.toggle()
+//                }
+//            }.padding(.horizontal)
+//          }
+//          .zIndex(1)
+//          .padding(.top, 50)
+//          .padding(.bottom, 5)
+//          .background(Color("background_light"))
           
           VStack {
             HStack {
@@ -84,12 +85,22 @@ struct ProductView: View {
             .shadow(color: Color.black.opacity(self.isSettingsOpen ? 0.2 : 0), radius: 20, x: 0.0, y: 10)
             .animation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 0))
             .offset(y: self.isSettingsOpen ? -50 : 0)
-            .edgesIgnoringSafeArea(.all)
+//            .edgesIgnoringSafeArea(.all)
         }
         
       }
-      .edgesIgnoringSafeArea(.all)
+      .edgesIgnoringSafeArea(.bottom)
     }
+    .navigationTitle("Products")
+    .toolbar(content: {
+      ToolbarItem(placement: .navigationBarTrailing) {
+        Button(action: {
+          isSettingsOpen.toggle()
+        }) {
+          Image(systemName: "slider.horizontal.3")
+        }
+      }
+    })
   }
 }
 
@@ -251,22 +262,22 @@ struct ProductListItemView: View {
         Spacer()
       }
       
-//      HStack(spacing: 20) {
-//        Spacer()
-//        HStack {
-//          Image(systemName: "star")
-//          Text("Favorite")
-//        }
-//        .padding()
-//        .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)), Color(#colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing))
-//        .cornerRadius(16)
-//        .shadow(color: Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)).opacity(0.5), radius: 10, x: 0.0, y: 0.0)
-//
-//        Text("Add to Session")
-//        Spacer()
-//      }
-//      .padding(.vertical, 8)
-//      Spacer()
+      //      HStack(spacing: 20) {
+      //        Spacer()
+      //        HStack {
+      //          Image(systemName: "star")
+      //          Text("Favorite")
+      //        }
+      //        .padding()
+      //        .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)), Color(#colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing))
+      //        .cornerRadius(16)
+      //        .shadow(color: Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)).opacity(0.5), radius: 10, x: 0.0, y: 0.0)
+      //
+      //        Text("Add to Session")
+      //        Spacer()
+      //      }
+      //      .padding(.vertical, 8)
+      //      Spacer()
     }
     .opacity(isOpen ? 1 : 0)
     .frame(maxHeight: isOpen ? .infinity : 0)
