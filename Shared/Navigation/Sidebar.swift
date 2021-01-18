@@ -43,7 +43,9 @@ struct Sidebar: View {
       ]))) {
         Label("Products", systemImage: "doc.text.magnifyingglass")
       }
-      Label("Shoppings", systemImage: "bag")
+      NavigationLink(destination: AugmentedRealityView()) {
+        Label("Shoppings", systemImage: "bag")
+      }
       Label("Compare", systemImage: "guitars")
     }
     .listStyle(SidebarListStyle())

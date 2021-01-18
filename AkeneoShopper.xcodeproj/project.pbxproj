@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,11 @@
 		BF7D526025B1E63700499C85 /* ProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D525F25B1E63700499C85 /* ProductList.swift */; };
 		BF7D526B25B1E7CD00499C85 /* AkeneoApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D526A25B1E7CD00499C85 /* AkeneoApi.swift */; };
 		BF7D527325B1EE2D00499C85 /* ProductListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D527225B1EE2D00499C85 /* ProductListStore.swift */; };
+		BF8BA5EB25B608F800F47973 /* AugmentedRealityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8BA5EA25B608F800F47973 /* AugmentedRealityView.swift */; };
+		BF8BA5EC25B608F800F47973 /* AugmentedRealityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8BA5EA25B608F800F47973 /* AugmentedRealityView.swift */; };
+		BF8BA60125B613D700F47973 /* Backpack.usdz in Resources */ = {isa = PBXBuildFile; fileRef = BF8BA60025B613D700F47973 /* Backpack.usdz */; };
+		BF8BA60F25B61C2500F47973 /* ARModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8BA60E25B61C2500F47973 /* ARModel.swift */; };
+		BF8BA61625B61EC000F47973 /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = BF8BA61525B61EC000F47973 /* FocusEntity */; };
 		BFE92C8325B3ABBE00EF173B /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B87C925B396E50008E9FB /* Sidebar.swift */; };
 		BFE92C8825B3ABC000EF173B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D521225B1E57300499C85 /* ContentView.swift */; };
 		BFE92C8D25B3ABC300EF173B /* ProductListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D527225B1EE2D00499C85 /* ProductListStore.swift */; };
@@ -70,6 +75,9 @@
 		BF7D525F25B1E63700499C85 /* ProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductList.swift; sourceTree = "<group>"; };
 		BF7D526A25B1E7CD00499C85 /* AkeneoApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkeneoApi.swift; sourceTree = "<group>"; };
 		BF7D527225B1EE2D00499C85 /* ProductListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListStore.swift; sourceTree = "<group>"; };
+		BF8BA5EA25B608F800F47973 /* AugmentedRealityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AugmentedRealityView.swift; sourceTree = "<group>"; };
+		BF8BA60025B613D700F47973 /* Backpack.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Backpack.usdz; sourceTree = "<group>"; };
+		BF8BA60E25B61C2500F47973 /* ARModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF8BA61625B61EC000F47973 /* FocusEntity in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +118,8 @@
 			children = (
 				BF3B872825B310050008E9FB /* ImageSliderView.swift */,
 				BF3B874625B33FD10008E9FB /* BlurView.swift */,
+				BF8BA5EA25B608F800F47973 /* AugmentedRealityView.swift */,
+				BF8BA60E25B61C2500F47973 /* ARModel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -137,6 +148,7 @@
 		BF7D521025B1E57300499C85 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				BF8BA5F125B609FA00F47973 /* 3DModels */,
 				BF3B87C825B396D90008E9FB /* Navigation */,
 				BF7D527025B1EE1A00499C85 /* Application */,
 				BF7D526925B1E7BB00499C85 /* Infrastructure */,
@@ -243,6 +255,14 @@
 			path = Store;
 			sourceTree = "<group>";
 		};
+		BF8BA5F125B609FA00F47973 /* 3DModels */ = {
+			isa = PBXGroup;
+			children = (
+				BF8BA60025B613D700F47973 /* Backpack.usdz */,
+			);
+			path = 3DModels;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -259,6 +279,9 @@
 			dependencies = (
 			);
 			name = "AkeneoShopper (iOS)";
+			packageProductDependencies = (
+				BF8BA61525B61EC000F47973 /* FocusEntity */,
+			);
 			productName = "AkeneoShopper (iOS)";
 			productReference = BF7D521825B1E57700499C85 /* AkeneoShopper.app */;
 			productType = "com.apple.product-type.application";
@@ -350,6 +373,9 @@
 				Base,
 			);
 			mainGroup = BF7D520B25B1E57300499C85;
+			packageReferences = (
+				BF8BA61425B61EC000F47973 /* XCRemoteSwiftPackageReference "FocusEntity" */,
+			);
 			productRefGroup = BF7D521925B1E57700499C85 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -367,6 +393,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF8BA60125B613D700F47973 /* Backpack.usdz in Resources */,
 				BF7D523E25B1E57700499C85 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,7 +429,9 @@
 			files = (
 				BF7D523C25B1E57700499C85 /* ContentView.swift in Sources */,
 				BF3B874725B33FD10008E9FB /* BlurView.swift in Sources */,
+				BF8BA5EB25B608F800F47973 /* AugmentedRealityView.swift in Sources */,
 				BF7D527325B1EE2D00499C85 /* ProductListStore.swift in Sources */,
+				BF8BA60F25B61C2500F47973 /* ARModel.swift in Sources */,
 				BF7D526025B1E63700499C85 /* ProductList.swift in Sources */,
 				BF7D525525B1E61100499C85 /* ProductView.swift in Sources */,
 				BF7D526B25B1E7CD00499C85 /* AkeneoApi.swift in Sources */,
@@ -418,6 +447,7 @@
 			files = (
 				BFE92C8325B3ABBE00EF173B /* Sidebar.swift in Sources */,
 				BFE92CA625B3ABCE00EF173B /* ProductView.swift in Sources */,
+				BF8BA5EC25B608F800F47973 /* AugmentedRealityView.swift in Sources */,
 				BFE92CA125B3ABCC00EF173B /* BlurView.swift in Sources */,
 				BF7D523B25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */,
 				BFE92C8825B3ABC000EF173B /* ContentView.swift in Sources */,
@@ -802,6 +832,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BF8BA61425B61EC000F47973 /* XCRemoteSwiftPackageReference "FocusEntity" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maxxfrazer/FocusEntity.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BF8BA61525B61EC000F47973 /* FocusEntity */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF8BA61425B61EC000F47973 /* XCRemoteSwiftPackageReference "FocusEntity" */;
+			productName = FocusEntity;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BF7D520C25B1E57300499C85 /* Project object */;
 }
