@@ -26,6 +26,8 @@
 		BF8BA60125B613D700F47973 /* Backpack.usdz in Resources */ = {isa = PBXBuildFile; fileRef = BF8BA60025B613D700F47973 /* Backpack.usdz */; };
 		BF8BA60F25B61C2500F47973 /* ARModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8BA60E25B61C2500F47973 /* ARModel.swift */; };
 		BF8BA61625B61EC000F47973 /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = BF8BA61525B61EC000F47973 /* FocusEntity */; };
+		BF8BA62125B63BD300F47973 /* CarBode in Frameworks */ = {isa = PBXBuildFile; productRef = BF8BA62025B63BD300F47973 /* CarBode */; };
+		BF8BA62725B63BE500F47973 /* BarcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8BA62625B63BE400F47973 /* BarcodeScanner.swift */; };
 		BFE92C8325B3ABBE00EF173B /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B87C925B396E50008E9FB /* Sidebar.swift */; };
 		BFE92C8825B3ABC000EF173B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D521225B1E57300499C85 /* ContentView.swift */; };
 		BFE92C8D25B3ABC300EF173B /* ProductListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D527225B1EE2D00499C85 /* ProductListStore.swift */; };
@@ -78,6 +80,7 @@
 		BF8BA5EA25B608F800F47973 /* AugmentedRealityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AugmentedRealityView.swift; sourceTree = "<group>"; };
 		BF8BA60025B613D700F47973 /* Backpack.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Backpack.usdz; sourceTree = "<group>"; };
 		BF8BA60E25B61C2500F47973 /* ARModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARModel.swift; sourceTree = "<group>"; };
+		BF8BA62625B63BE400F47973 /* BarcodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScanner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF8BA61625B61EC000F47973 /* FocusEntity in Frameworks */,
+				BF8BA62125B63BD300F47973 /* CarBode in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +124,7 @@
 				BF3B874625B33FD10008E9FB /* BlurView.swift */,
 				BF8BA5EA25B608F800F47973 /* AugmentedRealityView.swift */,
 				BF8BA60E25B61C2500F47973 /* ARModel.swift */,
+				BF8BA62625B63BE400F47973 /* BarcodeScanner.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 			name = "AkeneoShopper (iOS)";
 			packageProductDependencies = (
 				BF8BA61525B61EC000F47973 /* FocusEntity */,
+				BF8BA62025B63BD300F47973 /* CarBode */,
 			);
 			productName = "AkeneoShopper (iOS)";
 			productReference = BF7D521825B1E57700499C85 /* AkeneoShopper.app */;
@@ -375,6 +381,7 @@
 			mainGroup = BF7D520B25B1E57300499C85;
 			packageReferences = (
 				BF8BA61425B61EC000F47973 /* XCRemoteSwiftPackageReference "FocusEntity" */,
+				BF8BA61F25B63BD300F47973 /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */,
 			);
 			productRefGroup = BF7D521925B1E57700499C85 /* Products */;
 			projectDirPath = "";
@@ -436,6 +443,7 @@
 				BF7D525525B1E61100499C85 /* ProductView.swift in Sources */,
 				BF7D526B25B1E7CD00499C85 /* AkeneoApi.swift in Sources */,
 				BF7D523A25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */,
+				BF8BA62725B63BE500F47973 /* BarcodeScanner.swift in Sources */,
 				BF3B87CA25B396E60008E9FB /* Sidebar.swift in Sources */,
 				BF3B872925B310050008E9FB /* ImageSliderView.swift in Sources */,
 			);
@@ -842,6 +850,14 @@
 				minimumVersion = 2.1.0;
 			};
 		};
+		BF8BA61F25B63BD300F47973 /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/heart/CarBode-Barcode-Scanner-For-SwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -849,6 +865,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BF8BA61425B61EC000F47973 /* XCRemoteSwiftPackageReference "FocusEntity" */;
 			productName = FocusEntity;
+		};
+		BF8BA62025B63BD300F47973 /* CarBode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF8BA61F25B63BD300F47973 /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */;
+			productName = CarBode;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
