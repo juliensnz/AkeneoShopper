@@ -9,6 +9,7 @@ import SwiftUI
 
 #if os(iOS)
 let screen = UIScreen.main.bounds
+// https://stackoverflow.com/questions/24059327/detect-current-device-with-ui-user-interface-idiom-in-swift
 let currentDeviceIsIpad = UIDevice.current.userInterfaceIdiom == .pad;
 #else
 let currentDeviceIsIpad = false

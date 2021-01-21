@@ -8,6 +8,7 @@ import SwiftUI
 
 struct CircularButton: View {
   var icon: String
+  var color: Color = Color.black.opacity(0.6)
   var action: () -> Void
   
   var body: some View {
@@ -17,7 +18,7 @@ struct CircularButton: View {
         .frame(width: 15, height: 15)
         .foregroundColor(.white)
         .padding(10)
-        .background(Color.black.opacity(0.6))
+        .background(self.color)
         .clipShape(Circle())
     }).buttonStyle(BorderlessButtonStyle())
   }

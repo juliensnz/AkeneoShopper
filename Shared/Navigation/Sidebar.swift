@@ -13,12 +13,12 @@ struct Sidebar: View {
     NavigationView {
       #if os(iOS)
       content
-        .navigationTitle("Shop")
         .toolbar(content: {
           ToolbarItem(placement: .navigationBarTrailing) {
             Image(systemName: "gear")
           }
         })
+        .navigationTitle("Shop")
       #else
       content
         .frame(minWidth: 200, idealWidth: 250, maxWidth: 300)

@@ -59,6 +59,7 @@ struct ProductHeader: View {
             CircularButton(icon: "arrow.up.left.and.arrow.down.right") {}
           }
           .padding(.horizontal, 8)
+          // https://stackoverflow.com/questions/59682446/how-to-trigger-action-after-x-seconds-in-swiftui
           .onAppear(perform: {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
               self.isDisplayed = true

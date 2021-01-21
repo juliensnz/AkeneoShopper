@@ -29,6 +29,7 @@ struct ImageSliderView<Content>: View where Content: View {
   let isDraggableDevice = false
   #endif
   
+  // https://stackoverflow.com/questions/64507630/how-to-use-state-if-binding-not-provided-in-the-initializer
   var currentIndex: Int {
     get {
       return externalCurrentIndex?.wrappedValue ?? internaleCurrentIndex

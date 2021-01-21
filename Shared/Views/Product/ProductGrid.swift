@@ -37,8 +37,16 @@ struct ProductGrid: View {
             .onTapGesture {
               self.showBarcodeScanner = true
             }.sheet(isPresented: $showBarcodeScanner) {
-              BarcodeScanner()
-                .frame(height: 300)
+              BarcodeScanner(action: { result in
+                switch result {
+                case .confirm(let code):
+                  print("Barcode confirmed: \(code)")
+                default:
+                  print("Barcode scanner dismissed")
+                }
+                
+                self.showBarcodeScanner = false
+              })
             }
         }
       })

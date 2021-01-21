@@ -26,7 +26,6 @@ struct BlurView: UIViewRepresentable {
       blurView.heightAnchor.constraint(equalTo: view.heightAnchor)
     ])
     
-    
     return view;
   }
   
