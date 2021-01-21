@@ -9,6 +9,9 @@ import SwiftUI
 
 #if os(iOS)
 let screen = UIScreen.main.bounds
+let currentDeviceIsIpad = UIDevice.current.userInterfaceIdiom == .pad;
+#else
+let currentDeviceIsIpad = false
 #endif
 
 #if os(iOS)

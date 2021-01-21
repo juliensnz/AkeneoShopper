@@ -43,6 +43,5 @@ struct BarcodeScanner: View {
         Text("Bar code: \(barcode!)")
       }
     }
-    
   }
 }

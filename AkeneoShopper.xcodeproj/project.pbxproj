@@ -25,9 +25,14 @@
 		BF8BA5EC25B608F800F47973 /* AugmentedRealityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8BA5EA25B608F800F47973 /* AugmentedRealityView.swift */; };
 		BF8BA60125B613D700F47973 /* Backpack.usdz in Resources */ = {isa = PBXBuildFile; fileRef = BF8BA60025B613D700F47973 /* Backpack.usdz */; };
 		BF8BA60F25B61C2500F47973 /* ARModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8BA60E25B61C2500F47973 /* ARModel.swift */; };
-		BF8BA61625B61EC000F47973 /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = BF8BA61525B61EC000F47973 /* FocusEntity */; };
-		BF8BA62125B63BD300F47973 /* CarBode in Frameworks */ = {isa = PBXBuildFile; productRef = BF8BA62025B63BD300F47973 /* CarBode */; };
+		BF8BA62125B63BD300F47973 /* CarBode in Frameworks */ = {isa = PBXBuildFile; productRef = BF8BA62025B63BD300F47973 /* CarBode */; settings = {ATTRIBUTES = (Required, ); }; };
 		BF8BA62725B63BE500F47973 /* BarcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8BA62625B63BE400F47973 /* BarcodeScanner.swift */; };
+		BFE3779D25B8C6D8007B1A36 /* ProductHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE3779C25B8C6D8007B1A36 /* ProductHeader.swift */; };
+		BFE3779E25B8C6D8007B1A36 /* ProductHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE3779C25B8C6D8007B1A36 /* ProductHeader.swift */; };
+		BFE377AC25B8C94C007B1A36 /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE377AB25B8C94C007B1A36 /* VisualEffectBlur.swift */; };
+		BFE377B225B8C958007B1A36 /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE377B125B8C958007B1A36 /* VisualEffectBlur.swift */; };
+		BFE377DC25B8E487007B1A36 /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE377DB25B8E487007B1A36 /* CircularButton.swift */; };
+		BFE377E525B8E65D007B1A36 /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE377DB25B8E487007B1A36 /* CircularButton.swift */; };
 		BFE92C8325B3ABBE00EF173B /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B87C925B396E50008E9FB /* Sidebar.swift */; };
 		BFE92C8825B3ABC000EF173B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D521225B1E57300499C85 /* ContentView.swift */; };
 		BFE92C8D25B3ABC300EF173B /* ProductListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D527225B1EE2D00499C85 /* ProductListStore.swift */; };
@@ -36,6 +41,12 @@
 		BFE92C9C25B3ABCA00EF173B /* ImageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B872825B310050008E9FB /* ImageSliderView.swift */; };
 		BFE92CA125B3ABCC00EF173B /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B874625B33FD10008E9FB /* BlurView.swift */; };
 		BFE92CA625B3ABCE00EF173B /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D525425B1E61100499C85 /* ProductView.swift */; };
+		BFFF7CE725B7984400F28E82 /* ProductGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFF7CE625B7984400F28E82 /* ProductGrid.swift */; };
+		BFFF7D0725B79D3900F28E82 /* ProductDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFF7D0625B79D3900F28E82 /* ProductDetails.swift */; };
+		BFFF7D0825B79D3900F28E82 /* ProductDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFF7D0625B79D3900F28E82 /* ProductDetails.swift */; };
+		BFFF7D1225B79ECF00F28E82 /* ProductItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFF7D1125B79ECF00F28E82 /* ProductItem.swift */; };
+		BFFF7D1325B79ECF00F28E82 /* ProductItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFF7D1125B79ECF00F28E82 /* ProductItem.swift */; };
+		BFFF7D2825B7A77500F28E82 /* ProductGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFF7CE625B7984400F28E82 /* ProductGrid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +92,13 @@
 		BF8BA60025B613D700F47973 /* Backpack.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Backpack.usdz; sourceTree = "<group>"; };
 		BF8BA60E25B61C2500F47973 /* ARModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARModel.swift; sourceTree = "<group>"; };
 		BF8BA62625B63BE400F47973 /* BarcodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScanner.swift; sourceTree = "<group>"; };
+		BFE3779C25B8C6D8007B1A36 /* ProductHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductHeader.swift; sourceTree = "<group>"; };
+		BFE377AB25B8C94C007B1A36 /* VisualEffectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
+		BFE377B125B8C958007B1A36 /* VisualEffectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
+		BFE377DB25B8E487007B1A36 /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
+		BFFF7CE625B7984400F28E82 /* ProductGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGrid.swift; sourceTree = "<group>"; };
+		BFFF7D0625B79D3900F28E82 /* ProductDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetails.swift; sourceTree = "<group>"; };
+		BFFF7D1125B79ECF00F28E82 /* ProductItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +106,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF8BA61625B61EC000F47973 /* FocusEntity in Frameworks */,
 				BF8BA62125B63BD300F47973 /* CarBode in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,6 +142,7 @@
 				BF8BA5EA25B608F800F47973 /* AugmentedRealityView.swift */,
 				BF8BA60E25B61C2500F47973 /* ARModel.swift */,
 				BF8BA62625B63BE400F47973 /* BarcodeScanner.swift */,
+				BFE377EA25B8ED4D007B1A36 /* Button */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -179,6 +197,7 @@
 		BF7D521A25B1E57700499C85 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				BFE377AB25B8C94C007B1A36 /* VisualEffectBlur.swift */,
 				BF7D521B25B1E57700499C85 /* Info.plist */,
 			);
 			path = iOS;
@@ -187,6 +206,7 @@
 		BF7D522125B1E57700499C85 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				BFE377B125B8C958007B1A36 /* VisualEffectBlur.swift */,
 				BF7D522225B1E57700499C85 /* Info.plist */,
 				BF7D522325B1E57700499C85 /* macOS.entitlements */,
 			);
@@ -224,6 +244,10 @@
 			isa = PBXGroup;
 			children = (
 				BF7D525425B1E61100499C85 /* ProductView.swift */,
+				BFFF7CE625B7984400F28E82 /* ProductGrid.swift */,
+				BFFF7D0625B79D3900F28E82 /* ProductDetails.swift */,
+				BFFF7D1125B79ECF00F28E82 /* ProductItem.swift */,
+				BFE3779C25B8C6D8007B1A36 /* ProductHeader.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -268,6 +292,14 @@
 			path = 3DModels;
 			sourceTree = "<group>";
 		};
+		BFE377EA25B8ED4D007B1A36 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				BFE377DB25B8E487007B1A36 /* CircularButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -285,7 +317,6 @@
 			);
 			name = "AkeneoShopper (iOS)";
 			packageProductDependencies = (
-				BF8BA61525B61EC000F47973 /* FocusEntity */,
 				BF8BA62025B63BD300F47973 /* CarBode */,
 			);
 			productName = "AkeneoShopper (iOS)";
@@ -380,7 +411,6 @@
 			);
 			mainGroup = BF7D520B25B1E57300499C85;
 			packageReferences = (
-				BF8BA61425B61EC000F47973 /* XCRemoteSwiftPackageReference "FocusEntity" */,
 				BF8BA61F25B63BD300F47973 /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */,
 			);
 			productRefGroup = BF7D521925B1E57700499C85 /* Products */;
@@ -435,15 +465,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF7D523C25B1E57700499C85 /* ContentView.swift in Sources */,
+				BFFF7CE725B7984400F28E82 /* ProductGrid.swift in Sources */,
 				BF3B874725B33FD10008E9FB /* BlurView.swift in Sources */,
 				BF8BA5EB25B608F800F47973 /* AugmentedRealityView.swift in Sources */,
 				BF7D527325B1EE2D00499C85 /* ProductListStore.swift in Sources */,
 				BF8BA60F25B61C2500F47973 /* ARModel.swift in Sources */,
+				BFE377AC25B8C94C007B1A36 /* VisualEffectBlur.swift in Sources */,
+				BFFF7D0725B79D3900F28E82 /* ProductDetails.swift in Sources */,
 				BF7D526025B1E63700499C85 /* ProductList.swift in Sources */,
+				BFE3779D25B8C6D8007B1A36 /* ProductHeader.swift in Sources */,
 				BF7D525525B1E61100499C85 /* ProductView.swift in Sources */,
 				BF7D526B25B1E7CD00499C85 /* AkeneoApi.swift in Sources */,
+				BFE377E525B8E65D007B1A36 /* CircularButton.swift in Sources */,
 				BF7D523A25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */,
 				BF8BA62725B63BE500F47973 /* BarcodeScanner.swift in Sources */,
+				BFFF7D1225B79ECF00F28E82 /* ProductItem.swift in Sources */,
 				BF3B87CA25B396E60008E9FB /* Sidebar.swift in Sources */,
 				BF3B872925B310050008E9FB /* ImageSliderView.swift in Sources */,
 			);
@@ -453,15 +489,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE377B225B8C958007B1A36 /* VisualEffectBlur.swift in Sources */,
 				BFE92C8325B3ABBE00EF173B /* Sidebar.swift in Sources */,
+				BFFF7D2825B7A77500F28E82 /* ProductGrid.swift in Sources */,
 				BFE92CA625B3ABCE00EF173B /* ProductView.swift in Sources */,
+				BFFF7D1325B79ECF00F28E82 /* ProductItem.swift in Sources */,
 				BF8BA5EC25B608F800F47973 /* AugmentedRealityView.swift in Sources */,
 				BFE92CA125B3ABCC00EF173B /* BlurView.swift in Sources */,
+				BFE3779E25B8C6D8007B1A36 /* ProductHeader.swift in Sources */,
 				BF7D523B25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */,
 				BFE92C8825B3ABC000EF173B /* ContentView.swift in Sources */,
 				BFE92C9725B3ABC800EF173B /* ProductList.swift in Sources */,
 				BFE92C9225B3ABC600EF173B /* AkeneoApi.swift in Sources */,
 				BFE92C8D25B3ABC300EF173B /* ProductListStore.swift in Sources */,
+				BFFF7D0825B79D3900F28E82 /* ProductDetails.swift in Sources */,
+				BFE377DC25B8E487007B1A36 /* CircularButton.swift in Sources */,
 				BFE92C9C25B3ABCA00EF173B /* ImageSliderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -842,14 +884,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BF8BA61425B61EC000F47973 /* XCRemoteSwiftPackageReference "FocusEntity" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/maxxfrazer/FocusEntity.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.0;
-			};
-		};
 		BF8BA61F25B63BD300F47973 /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/heart/CarBode-Barcode-Scanner-For-SwiftUI.git";
@@ -861,11 +895,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BF8BA61525B61EC000F47973 /* FocusEntity */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BF8BA61425B61EC000F47973 /* XCRemoteSwiftPackageReference "FocusEntity" */;
-			productName = FocusEntity;
-		};
 		BF8BA62025B63BD300F47973 /* CarBode */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BF8BA61F25B63BD300F47973 /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */;
