@@ -14,12 +14,14 @@ class ProductListStore: ObservableObject {
   init(defaultProducts: ProductList = ProductList(products: [])) {
     self.productList = defaultProducts;
     
-//    self.getProductList()
+    self.getProductList()
   }
   
   func getProductList() {
-    AkeneoApi().getAllProducts { (productList) in
+    AkeneoApi().getAllProducts(context: catalogContext, onSuccess: { (productList) in
       self.productList = productList;
-    }
+    }, onFailure: {error in
+      print(error)
+    })
   }
 }

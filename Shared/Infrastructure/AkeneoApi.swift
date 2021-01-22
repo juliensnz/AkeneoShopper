@@ -6,45 +6,24 @@
 //
 
 import SwiftUI
-
-struct AkeneoApiAuthorizationResponse: Codable {
-  let access_token: String;
-  let expires_in: Int;
-  let refresh_token: String;
-}
-
-struct AkeneoApiProduct: Codable {
-  let identifier: String;
-  let enabled: Bool;
-  let family: String;
-  let categories: [String]
-}
-
-struct AkeneoApiProductList: Codable {
-  let items: [AkeneoApiProduct]
-}
-
-struct AkeneoApiProductListResponse: Codable {
-  let _embedded: AkeneoApiProductList;
-}
-
-enum ApiError: Error {
-  case authentication(message: String)
-}
+import SwiftyJSON
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 class AkeneoApi {
-  let baseUrl = "http://pcd.test:8080"
-  let clientID = "5_3zbhbmi3p88wks4g4sw0g40occ8gk4skwc4s40k4kkwc044gs0"
-  let secret = "4g31gvvkw54w4k40ws0o0sck040oog8k844ogcc8ogs44w0o4g"
-  let user = "swift_2340"
-  let password = "51c0630bd"
+  let baseUrl = "http://ped.test:8080"
+  let clientID = "1_16d23okvhfb44ccgo8s4wgoo8swocokcgsk0c0o4c084k00ks4"
+  let secret = "2crnhds1wx5wocwsg4sw0cgwo0w0sckwcokg8go4sck8c44cso"
+  let user = "magento_0000"
+  let password = "2dpuj5tx4w4d"
   
   var accessToken: String? = nil;
   var validUntil: Date? = nil;
   
-  func getAccessToken(force: Bool = false, completion: @escaping (String) -> ()) {
+  func getAccessToken(force: Bool = false, onSuccess: @escaping(String) -> (), onFailure: @escaping(String) -> ()) {
     if (!force && accessToken != nil && validUntil != nil && Date().compare(validUntil!).rawValue > 0) {
-      completion(accessToken!)
+      onSuccess(accessToken!)
     }
     
     guard let url = URL(string: "\(self.baseUrl)/api/oauth/v1/token") else { return }
@@ -52,7 +31,8 @@ class AkeneoApi {
     
     let clientIdAndSecret = "\(self.clientID):\(self.secret)".data(using: String.Encoding.utf8);
     guard let base64ClientIdAndSecret = clientIdAndSecret?.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0)) else {
-      print("Cannot encode base64 client id and secret")
+      onFailure("Cannot encode base64 client id and secret")
+      
       return
     }
     
@@ -65,50 +45,88 @@ class AkeneoApi {
       "grant_type": "password"
     ]
     urlRequest.httpBody = try! JSONSerialization.data(withJSONObject: parameters)
-
-    URLSession.shared.dataTask(with: urlRequest) { (data, _, _) in
-      guard let data = data else { return }
-
-      do {
-        let authorization = try JSONDecoder().decode(AkeneoApiAuthorizationResponse.self, from: data);
+    
+    URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+      let result = ResponseHandler.handleResponse(data: data, response: response, error: error)
         
-        DispatchQueue.main.async {
-          self.accessToken = authorization.access_token;
-          self.validUntil = Calendar.current.date(
-            byAdding: .hour,
-            value: 1,
-            to: Date())
-          
-          completion(authorization.access_token);
-        }
-      } catch {
-        print(error)
+      switch (result) {
+      case ApiResponse.success(let data):
+        self.accessToken = data["access_token"].string ?? "";
+        self.validUntil = Calendar.current.date(
+          byAdding: .hour,
+          value: 1,
+          to: Date())
+        
+        onSuccess(data["access_token"].string ?? "");
+      case ApiResponse.error(let error):
+        onFailure(error)
       }
     }.resume();
   }
   
-  func getAllProducts(completion: @escaping (ProductList) -> ()) {
-    self.getAccessToken { (accessToken) in
-      guard let url = URL(string: "http://pcd.test:8080/api/rest/v1/products") else { return }
+  func getUrlRequest(url: URL, onSuccess: @escaping(URLRequest) -> (), onFailure: @escaping(String) -> ()) {
+    self.getAccessToken(onSuccess: { (accessToken) in
+      
       var urlRequest = URLRequest(url: url);
       urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
       urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-      URLSession.shared.dataTask(with: urlRequest) { (data, _, _) in
-        guard let data = data else { return }
-
-        do {
-          let products = try JSONDecoder().decode(AkeneoApiProductListResponse.self, from: data);
-          
-          DispatchQueue.main.async {
-            completion(ProductList(products: products._embedded.items.map({ (apiProduct: AkeneoApiProduct) -> ProductListItem in
-              return ProductListItem(apiProduct: apiProduct)
-            })));
-          }
-        } catch {
-          print(error)
+      onSuccess(urlRequest)
+    }, onFailure: onFailure)
+  }
+  
+  
+  
+  func get(url: String, onSuccess: @escaping(JSON) -> (), onFailure: @escaping(String) -> ()) {
+    guard let validUrl = URL(string: url) else {
+      onFailure("Invalid URL: \(url)");
+      return
+    }
+    
+    self.get(url: validUrl, onSuccess: onSuccess, onFailure: onFailure)
+  }
+  
+  func get(url: URL, onSuccess: @escaping(JSON) -> (), onFailure: @escaping(String) -> ()) {
+    self.getUrlRequest(url: url, onSuccess: { (urlRequest) in
+      URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+        let result = ResponseHandler.handleResponse(data: data, response: response, error: error)
+                
+        switch (result) {
+        case ApiResponse.success(let successData):
+          onSuccess(successData)
+        case ApiResponse.error(let errorMessage):
+          onFailure(errorMessage)
         }
       }.resume();
+    }, onFailure: onFailure)
+  }
+  
+  func getAllProducts(context: CatalogContext, onSuccess: @escaping (ProductList) -> (), onFailure: @escaping(String) -> ()) {
+    self.get(url: "\(self.baseUrl)/api/rest/v1/products", onSuccess: { (data) in
+      let familyCodes = ProductDenormalizer.getFamilyCodes(data: data)
+      
+      self.getFamiliesByCode(familyCodes: familyCodes, onSuccess: { families in
+        onSuccess(ProductList(products: ProductDenormalizer.denormalizeAll(data: data, families: families, context: context)))
+      }, onFailure: onFailure)
+      
+    }, onFailure: onFailure)
+  }
+  
+  func getFamiliesByCode(familyCodes: [String], onSuccess: @escaping ([Family]) -> (), onFailure: @escaping(String) -> ()) {
+    let joinedFamilyCodes = familyCodes.map({ #""\#($0)""# }).joined(separator: ",")
+    let search = #"{"code":[{"operator":"IN","value":[\#(joinedFamilyCodes)]}]}"#
+    
+    let url = "\(self.baseUrl)/api/rest/v1/families";
+    guard var validUrl = URLComponents(string: url) else {
+      onFailure("Invalid URL: \(url)");
+      return
     }
+    validUrl.queryItems = [
+      URLQueryItem(name: "search", value: search)
+    ]
+    
+    self.get(url: validUrl.url!, onSuccess: { (data) in
+      onSuccess(FamilyDenormalizer.denormalizeAll(data: data))
+    }, onFailure: onFailure)
   }
 }

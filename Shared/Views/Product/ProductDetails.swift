@@ -52,7 +52,6 @@ struct ProductDetails: View {
     }
     .background(Color.white)
     .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
-    .matchedGeometryEffect(id: "container_\(product.id)", in: namespace)
   }
 }
 

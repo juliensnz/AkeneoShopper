@@ -42,19 +42,21 @@ struct ProductHeader: View {
             Spacer()
             
             if (!isDraggableDevice) {
+              let isLastPicture = currentPicture == picturesData.count - 1;
+              let isFirstPicture = currentPicture == 0;
+              
               CircularButton(icon: "arrow.left") {
-                if currentPicture > 0 {
-                  currentPicture -= 1
-                }
+                currentPicture -= 1
               }
+              .opacity(isFirstPicture ? 0.5 : 1)
+              .disabled(isFirstPicture)
               
               CircularButton(icon: "arrow.right") {
-                if currentPicture < picturesData.count - 1 {
-                  currentPicture += 1
-                }
+                currentPicture += 1
               }
+              .opacity(isLastPicture ? 0.5 : 1)
+              .disabled(isLastPicture)
             }
-            
             
             CircularButton(icon: "arrow.up.left.and.arrow.down.right") {}
           }
@@ -73,12 +75,14 @@ struct ProductHeader: View {
         }
         VStack(alignment: .leading, spacing: 0) {
           HStack {
-            Text(product.label)
+            Text(product.getLabel(context: catalogContext))
               .font(.title)
               .fontWeight(.light)
+              .lineLimit(1)
               .frame(maxWidth: .infinity, alignment: .bottomLeading)
+              .truncationMode(.tail)
             
-            Text(product.family)
+            Text(product.getFamilyLabel(context: catalogContext))
               .padding(.vertical, 2)
               .padding(.horizontal, 8)
               .background(familyColorsData[0])

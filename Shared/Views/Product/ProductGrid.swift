@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct ProductGrid: View {
-  var products: [ProductListItem];
+  @ObservedObject var productListStore: ProductListStore;
+  
   @State var selectedProduct: ProductListItem? = nil
   @State var isGridDisabled = false;
   @State var showBarcodeScanner = false;
   @Namespace var namespace
+  
+  init(products: ProductList = ProductList(products: [])) {
+    self.productListStore = ProductListStore(defaultProducts: products)
+  }
   
   var body: some View {
     ZStack {
@@ -73,7 +78,7 @@ struct ProductGrid: View {
       LazyVGrid(columns: [
         GridItem(.adaptive(minimum: 300), spacing: 16)
       ], spacing: 16) {
-        ForEach(self.products) { product in
+        ForEach(self.productListStore.productList.products) { product in
           VStack {
             ProductHeader(product: product, isExpanded: false)
               .matchedGeometryEffect(id: "header_\(product.id)", in: namespace, isSource: self.selectedProduct == nil)
@@ -86,7 +91,6 @@ struct ProductGrid: View {
               }
               .disabled(self.isGridDisabled)
           }
-          .matchedGeometryEffect(id: "container_\(product.id)", in: namespace, isSource: self.selectedProduct == nil)
         }
       }
       .padding(.horizontal)
@@ -107,7 +111,7 @@ struct ProductGrid: View {
             self.dismissModal()
           }
         }
-        .padding(16)
+        .padding(8)
       }
       .zIndex(3)
       .padding(currentDeviceIsIpad ? 16 : 0)
@@ -127,9 +131,7 @@ struct ProductGrid: View {
 struct ProductGrid_Previews: PreviewProvider {
   static var previews: some View {
     Group {
-      ProductGrid(products: productsData)
-      ProductGrid(products: productsData)
-        .previewDevice("iPhone 11")
+      ProductGrid(products: ProductList(products: productsData))
     }
   }
 }

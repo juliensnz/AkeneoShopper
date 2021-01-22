@@ -27,6 +27,17 @@
 		BF8BA60F25B61C2500F47973 /* ARModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8BA60E25B61C2500F47973 /* ARModel.swift */; };
 		BF8BA62125B63BD300F47973 /* CarBode in Frameworks */ = {isa = PBXBuildFile; productRef = BF8BA62025B63BD300F47973 /* CarBode */; settings = {ATTRIBUTES = (Required, ); }; };
 		BF8BA62725B63BE500F47973 /* BarcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8BA62625B63BE400F47973 /* BarcodeScanner.swift */; };
+		BFD64C4425BB55AA002C0AD0 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = BFD64C4325BB55AA002C0AD0 /* SwiftyJSON */; };
+		BFD64C5325BB745B002C0AD0 /* ProductDenormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD64C5225BB745B002C0AD0 /* ProductDenormalizer.swift */; };
+		BFD64C5D25BB7525002C0AD0 /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD64C5C25BB7525002C0AD0 /* ResponseHandler.swift */; };
+		BFD64C6225BB7571002C0AD0 /* ProductDenormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD64C5225BB745B002C0AD0 /* ProductDenormalizer.swift */; };
+		BFD64C6725BB7575002C0AD0 /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD64C5C25BB7525002C0AD0 /* ResponseHandler.swift */; };
+		BFD64C8525BB7CB1002C0AD0 /* FamilyDenormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD64C8425BB7CB1002C0AD0 /* FamilyDenormalizer.swift */; };
+		BFD64C8A25BB7CB4002C0AD0 /* FamilyDenormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD64C8425BB7CB1002C0AD0 /* FamilyDenormalizer.swift */; };
+		BFD64C9025BB7CF6002C0AD0 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD64C8F25BB7CF6002C0AD0 /* Family.swift */; };
+		BFD64C9525BB7D18002C0AD0 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD64C8F25BB7CF6002C0AD0 /* Family.swift */; };
+		BFD64CA725BB8A40002C0AD0 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD64CA625BB8A40002C0AD0 /* Context.swift */; };
+		BFD64CA825BB8A40002C0AD0 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD64CA625BB8A40002C0AD0 /* Context.swift */; };
 		BFE3779D25B8C6D8007B1A36 /* ProductHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE3779C25B8C6D8007B1A36 /* ProductHeader.swift */; };
 		BFE3779E25B8C6D8007B1A36 /* ProductHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE3779C25B8C6D8007B1A36 /* ProductHeader.swift */; };
 		BFE377AC25B8C94C007B1A36 /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE377AB25B8C94C007B1A36 /* VisualEffectBlur.swift */; };
@@ -92,6 +103,11 @@
 		BF8BA60025B613D700F47973 /* Backpack.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Backpack.usdz; sourceTree = "<group>"; };
 		BF8BA60E25B61C2500F47973 /* ARModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARModel.swift; sourceTree = "<group>"; };
 		BF8BA62625B63BE400F47973 /* BarcodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScanner.swift; sourceTree = "<group>"; };
+		BFD64C5225BB745B002C0AD0 /* ProductDenormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDenormalizer.swift; sourceTree = "<group>"; };
+		BFD64C5C25BB7525002C0AD0 /* ResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
+		BFD64C8425BB7CB1002C0AD0 /* FamilyDenormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyDenormalizer.swift; sourceTree = "<group>"; };
+		BFD64C8F25BB7CF6002C0AD0 /* Family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
+		BFD64CA625BB8A40002C0AD0 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		BFE3779C25B8C6D8007B1A36 /* ProductHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductHeader.swift; sourceTree = "<group>"; };
 		BFE377AB25B8C94C007B1A36 /* VisualEffectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
 		BFE377B125B8C958007B1A36 /* VisualEffectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
@@ -106,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFD64C4425BB55AA002C0AD0 /* SwiftyJSON in Frameworks */,
 				BF8BA62125B63BD300F47973 /* CarBode in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +273,8 @@
 			isa = PBXGroup;
 			children = (
 				BF7D525F25B1E63700499C85 /* ProductList.swift */,
+				BFD64C8F25BB7CF6002C0AD0 /* Family.swift */,
+				BFD64CA625BB8A40002C0AD0 /* Context.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -263,7 +282,9 @@
 		BF7D526925B1E7BB00499C85 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				BFD64C5125BB7448002C0AD0 /* Denormalizer */,
 				BF7D526A25B1E7CD00499C85 /* AkeneoApi.swift */,
+				BFD64C5C25BB7525002C0AD0 /* ResponseHandler.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -292,6 +313,15 @@
 			path = 3DModels;
 			sourceTree = "<group>";
 		};
+		BFD64C5125BB7448002C0AD0 /* Denormalizer */ = {
+			isa = PBXGroup;
+			children = (
+				BFD64C5225BB745B002C0AD0 /* ProductDenormalizer.swift */,
+				BFD64C8425BB7CB1002C0AD0 /* FamilyDenormalizer.swift */,
+			);
+			path = Denormalizer;
+			sourceTree = "<group>";
+		};
 		BFE377EA25B8ED4D007B1A36 /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +348,7 @@
 			name = "AkeneoShopper (iOS)";
 			packageProductDependencies = (
 				BF8BA62025B63BD300F47973 /* CarBode */,
+				BFD64C4325BB55AA002C0AD0 /* SwiftyJSON */,
 			);
 			productName = "AkeneoShopper (iOS)";
 			productReference = BF7D521825B1E57700499C85 /* AkeneoShopper.app */;
@@ -412,6 +443,7 @@
 			mainGroup = BF7D520B25B1E57300499C85;
 			packageReferences = (
 				BF8BA61F25B63BD300F47973 /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */,
+				BFD64C4225BB55AA002C0AD0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = BF7D521925B1E57700499C85 /* Products */;
 			projectDirPath = "";
@@ -464,6 +496,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFD64C8525BB7CB1002C0AD0 /* FamilyDenormalizer.swift in Sources */,
+				BFD64C5325BB745B002C0AD0 /* ProductDenormalizer.swift in Sources */,
 				BF7D523C25B1E57700499C85 /* ContentView.swift in Sources */,
 				BFFF7CE725B7984400F28E82 /* ProductGrid.swift in Sources */,
 				BF3B874725B33FD10008E9FB /* BlurView.swift in Sources */,
@@ -476,9 +510,12 @@
 				BFE3779D25B8C6D8007B1A36 /* ProductHeader.swift in Sources */,
 				BF7D525525B1E61100499C85 /* ProductView.swift in Sources */,
 				BF7D526B25B1E7CD00499C85 /* AkeneoApi.swift in Sources */,
+				BFD64C5D25BB7525002C0AD0 /* ResponseHandler.swift in Sources */,
+				BFD64C9025BB7CF6002C0AD0 /* Family.swift in Sources */,
 				BFE377E525B8E65D007B1A36 /* CircularButton.swift in Sources */,
 				BF7D523A25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */,
 				BF8BA62725B63BE500F47973 /* BarcodeScanner.swift in Sources */,
+				BFD64CA725BB8A40002C0AD0 /* Context.swift in Sources */,
 				BFFF7D1225B79ECF00F28E82 /* ProductItem.swift in Sources */,
 				BF3B87CA25B396E60008E9FB /* Sidebar.swift in Sources */,
 				BF3B872925B310050008E9FB /* ImageSliderView.swift in Sources */,
@@ -492,14 +529,19 @@
 				BFE377B225B8C958007B1A36 /* VisualEffectBlur.swift in Sources */,
 				BFE92C8325B3ABBE00EF173B /* Sidebar.swift in Sources */,
 				BFFF7D2825B7A77500F28E82 /* ProductGrid.swift in Sources */,
+				BFD64CA825BB8A40002C0AD0 /* Context.swift in Sources */,
 				BFE92CA625B3ABCE00EF173B /* ProductView.swift in Sources */,
 				BFFF7D1325B79ECF00F28E82 /* ProductItem.swift in Sources */,
+				BFD64C9525BB7D18002C0AD0 /* Family.swift in Sources */,
 				BF8BA5EC25B608F800F47973 /* AugmentedRealityView.swift in Sources */,
 				BFE92CA125B3ABCC00EF173B /* BlurView.swift in Sources */,
 				BFE3779E25B8C6D8007B1A36 /* ProductHeader.swift in Sources */,
 				BF7D523B25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */,
 				BFE92C8825B3ABC000EF173B /* ContentView.swift in Sources */,
 				BFE92C9725B3ABC800EF173B /* ProductList.swift in Sources */,
+				BFD64C6725BB7575002C0AD0 /* ResponseHandler.swift in Sources */,
+				BFD64C8A25BB7CB4002C0AD0 /* FamilyDenormalizer.swift in Sources */,
+				BFD64C6225BB7571002C0AD0 /* ProductDenormalizer.swift in Sources */,
 				BFE92C9225B3ABC600EF173B /* AkeneoApi.swift in Sources */,
 				BFE92C8D25B3ABC300EF173B /* ProductListStore.swift in Sources */,
 				BFFF7D0825B79D3900F28E82 /* ProductDetails.swift in Sources */,
@@ -892,6 +934,14 @@
 				minimumVersion = 2.2.2;
 			};
 		};
+		BFD64C4225BB55AA002C0AD0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -899,6 +949,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BF8BA61F25B63BD300F47973 /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */;
 			productName = CarBode;
+		};
+		BFD64C4325BB55AA002C0AD0 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BFD64C4225BB55AA002C0AD0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
