@@ -31,13 +31,13 @@ struct Sidebar: View {
         })
       #endif
       
-      ProductGrid(products: ProductList(products: productsData))
+      ProductGrid(products: productsData)
     }
   }
   
   var content: some View {
     List {
-      NavigationLink(destination: ProductGrid(products: ProductList(products: productsData))) {
+      NavigationLink(destination: ProductGrid(products: productsData)) {
         Label("Products", systemImage: "doc.text.magnifyingglass")
       }
 //      #if os(iOS) && !targetEnvironment(simulator)
@@ -68,7 +68,7 @@ struct Sidebar_Previews: PreviewProvider {
 
 
 let productsData = [
-  ProductListItem(identifier: "FREKVENS Lights", label: "FREKVENS Lights", enabled: true, family: nil, familyCode: "Music", categories: ["FREKVENS", "Sales", "Party hard"], values: [:]),
+  ProductHeaderModel(label: "FREKVENS Lights", identifier: "FREKVENS Lights", images: [], family: "Music", categories: ["FREKVENS", "Sales", "Party hard"]),
 //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
 //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
 //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),

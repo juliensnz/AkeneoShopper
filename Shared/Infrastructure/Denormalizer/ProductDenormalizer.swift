@@ -8,25 +8,23 @@
 import SwiftyJSON
 
 class ProductDenormalizer {
-  class func denormalizeAll(data: JSON, families: [Family], context: CatalogContext) -> [ProductListItem] {
+  class func denormalizeAll(data: JSON, context: CatalogContext) -> [Product] {
     let path: [JSONSubscriptType] = ["_embedded","items"]
     let items = data[path].arrayValue;
     
-    return items.map({ (product) -> ProductListItem in
+    return items.map({ (product) -> Product in
       let familyCode = product["family"].string ?? "";
-      let family = self.getFamily(families: families, code: familyCode);
-      let values = product["values"].dictionary as? [String: JSON];
+      let values = product["values"].dictionary;
       
-      return ProductListItem(
+      return Product(
         identifier: product["identifier"].string ?? "",
-        label: product["identifier"].string ?? "",
         enabled: product["enabled"].bool ?? true,
-        family: family,
         familyCode: familyCode,
-        categories: (product["categories"].array ?? []).map({ (category) -> String in
+        categoryCodes: (product["categories"].array ?? []).map({ (category) -> String in
           return category.string ?? ""
         }),
-        values: values!
+        rawValues: values!,
+        context: context
       )
     })
   }

@@ -22,16 +22,20 @@ class ResponseHandler {
       return ApiResponse.error(error: "Unable to parse received data for all products")
     }
     
-    let result = try! JSON(data: data)
-    
-    if let code = result["code"].int {
-      guard let message = result["message"].string else {
-        return ApiResponse.error(error: "\(code) error: unable to parse response message \(String(describing: result))")
+    do {
+      let result = try JSON(data: data)
+      
+      if let code = result["code"].int {
+        guard let message = result["message"].string else {
+          return ApiResponse.error(error: "\(code) error: unable to parse response message \(String(describing: result))")
+        }
+        
+        return ApiResponse.error(error: "\(code) error: \(message)")
       }
       
-      return ApiResponse.error(error: "\(code) error: \(message)")
+      return ApiResponse.success(data: result);
+    } catch {
+      return ApiResponse.error(error: "error: \(error), \(data)")
     }
-    
-    return ApiResponse.success(data: result);
   }
 }

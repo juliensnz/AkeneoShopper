@@ -9,17 +9,19 @@ import SwiftUI
 import Combine
 
 class ProductListStore: ObservableObject {
-  @Published var productList: ProductList;
+  @Published var products: [ProductHeaderModel];
   
-  init(defaultProducts: ProductList = ProductList(products: [])) {
-    self.productList = defaultProducts;
+  init(defaultProducts: [ProductHeaderModel] = []) {
+    self.products = defaultProducts;
     
     self.getProductList()
   }
   
   func getProductList() {
-    AkeneoApi().getAllProducts(context: catalogContext, onSuccess: { (productList) in
-      self.productList = productList;
+    AkeneoApi.sharedInstance.getAllProducts(context: catalogContext, onSuccess: { (productList) in
+      self.products = productList.products.map({ (product) -> ProductHeaderModel in
+        return ProductHeaderModel(product: product, context: catalogContext)
+      });
     }, onFailure: {error in
       print(error)
     })

@@ -12,7 +12,7 @@ import FoundationNetworking
 #endif
 
 class AkeneoApi {
-  let baseUrl = "http://ped.test:8080"
+  let baseUrl = "http://192.168.1.23:8080"
   let clientID = "1_16d23okvhfb44ccgo8s4wgoo8swocokcgsk0c0o4c084k00ks4"
   let secret = "2crnhds1wx5wocwsg4sw0cgwo0w0sckwcokg8go4sck8c44cso"
   let user = "magento_0000"
@@ -21,7 +21,9 @@ class AkeneoApi {
   var accessToken: String? = nil;
   var validUntil: Date? = nil;
   
-  func getAccessToken(force: Bool = false, onSuccess: @escaping(String) -> (), onFailure: @escaping(String) -> ()) {
+  static let sharedInstance = AkeneoApi()
+  
+  private func getAccessToken(force: Bool = false, onSuccess: @escaping(String) -> (), onFailure: @escaping(String) -> ()) {
     if (!force && accessToken != nil && validUntil != nil && Date().compare(validUntil!).rawValue > 0) {
       onSuccess(accessToken!)
     }
@@ -64,7 +66,7 @@ class AkeneoApi {
     }.resume();
   }
   
-  func getUrlRequest(url: URL, onSuccess: @escaping(URLRequest) -> (), onFailure: @escaping(String) -> ()) {
+  private func getUrlRequest(url: URL, onSuccess: @escaping(URLRequest) -> (), onFailure: @escaping(String) -> ()) {
     self.getAccessToken(onSuccess: { (accessToken) in
       
       var urlRequest = URLRequest(url: url);
@@ -75,9 +77,7 @@ class AkeneoApi {
     }, onFailure: onFailure)
   }
   
-  
-  
-  func get(url: String, onSuccess: @escaping(JSON) -> (), onFailure: @escaping(String) -> ()) {
+  private func get(url: String, onSuccess: @escaping(JSON) -> (), onFailure: @escaping(String) -> ()) {
     guard let validUrl = URL(string: url) else {
       onFailure("Invalid URL: \(url)");
       return
@@ -86,7 +86,7 @@ class AkeneoApi {
     self.get(url: validUrl, onSuccess: onSuccess, onFailure: onFailure)
   }
   
-  func get(url: URL, onSuccess: @escaping(JSON) -> (), onFailure: @escaping(String) -> ()) {
+  private func get(url: URL, onSuccess: @escaping(JSON) -> (), onFailure: @escaping(String) -> ()) {
     self.getUrlRequest(url: url, onSuccess: { (urlRequest) in
       URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
         let result = ResponseHandler.handleResponse(data: data, response: response, error: error)
@@ -103,11 +103,11 @@ class AkeneoApi {
   
   func getAllProducts(context: CatalogContext, onSuccess: @escaping (ProductList) -> (), onFailure: @escaping(String) -> ()) {
     self.get(url: "\(self.baseUrl)/api/rest/v1/products", onSuccess: { (data) in
-      let familyCodes = ProductDenormalizer.getFamilyCodes(data: data)
+//      let familyCodes = ProductDenormalizer.getFamilyCodes(data: data)
       
-      self.getFamiliesByCode(familyCodes: familyCodes, onSuccess: { families in
-        onSuccess(ProductList(products: ProductDenormalizer.denormalizeAll(data: data, families: families, context: context)))
-      }, onFailure: onFailure)
+//      self.getFamiliesByCode(familyCodes: familyCodes, onSuccess: { families in
+        onSuccess(ProductList(products: ProductDenormalizer.denormalizeAll(data: data, context: context)))
+//      }, onFailure: onFailure)
       
     }, onFailure: onFailure)
   }
@@ -127,6 +127,30 @@ class AkeneoApi {
     
     self.get(url: validUrl.url!, onSuccess: { (data) in
       onSuccess(FamilyDenormalizer.denormalizeAll(data: data))
+    }, onFailure: onFailure)
+  }
+  
+  func getFamily(code: String, onSuccess: @escaping (Family) -> (), onFailure: @escaping(String) -> ()) {
+    let joinedFamilyCodes = [code].map({ #""\#($0)""# }).joined(separator: ",")
+    let search = #"{"code":[{"operator":"IN","value":[\#(joinedFamilyCodes)]}]}"#
+    
+    let url = "\(self.baseUrl)/api/rest/v1/families";
+    guard var validUrl = URLComponents(string: url) else {
+      onFailure("Invalid URL: \(url)");
+      return
+    }
+    validUrl.queryItems = [
+      URLQueryItem(name: "search", value: search)
+    ]
+    
+    self.get(url: validUrl.url!, onSuccess: { (data) in
+      onSuccess(FamilyDenormalizer.denormalizeAll(data: data)[0])
+    }, onFailure: onFailure)
+  }
+  
+  func loadImage(url: URL, onSuccess: @escaping (URLSession.DataTaskPublisher) -> (), onFailure: @escaping(String) -> ()) {
+    self.getUrlRequest(url: url, onSuccess: { request in
+      onSuccess(URLSession.shared.dataTaskPublisher(for: request))
     }, onFailure: onFailure)
   }
 }

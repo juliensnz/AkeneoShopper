@@ -10,12 +10,12 @@ import SwiftUI
 struct ProductGrid: View {
   @ObservedObject var productListStore: ProductListStore;
   
-  @State var selectedProduct: ProductListItem? = nil
+  @State var selectedProduct: Product? = nil
   @State var isGridDisabled = false;
   @State var showBarcodeScanner = false;
   @Namespace var namespace
   
-  init(products: ProductList = ProductList(products: [])) {
+  init(products: [ProductHeaderModel] = []) {
     self.productListStore = ProductListStore(defaultProducts: products)
   }
   
@@ -78,9 +78,9 @@ struct ProductGrid: View {
       LazyVGrid(columns: [
         GridItem(.adaptive(minimum: 300), spacing: 16)
       ], spacing: 16) {
-        ForEach(self.productListStore.productList.products) { product in
+        ForEach(self.productListStore.products) { product in
           VStack {
-            ProductHeader(product: product, isExpanded: false)
+            ProductHeader(product: ProductHeaderModel(product: product, context: catalogContext), isExpanded: false)
               .matchedGeometryEffect(id: "header_\(product.id)", in: namespace, isSource: self.selectedProduct == nil)
               .frame(height: 250)
               .onTapGesture {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProductDetails: View {
   var namespace: Namespace.ID;
-  var product: ProductListItem;
+  var product: ProductHeaderModel;
   var imageCount = 5;
   let pictures = [#imageLiteral(resourceName: "FREKVENS_table"), #imageLiteral(resourceName: "FREKVENS_sofa"), #imageLiteral(resourceName: "FREKVENS_light"), #imageLiteral(resourceName: "FREKVENS_lights"), #imageLiteral(resourceName: "FREKVENS_table"), #imageLiteral(resourceName: "FREKVENS_speaker")]
   
@@ -34,7 +34,7 @@ struct ProductDetails: View {
     VStack {
       ScrollView {
         VStack {
-          ProductHeader(product: product, isExpanded: true)
+          ProductHeader(product: ProductHeaderModel(product: product, context: catalogContext), isExpanded: true)
             .frame(height: 400)
             .matchedGeometryEffect(id: "header_\(product.id)", in: namespace)
           

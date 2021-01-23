@@ -7,8 +7,33 @@
 
 import SwiftUI
 
+struct ProductHeaderModel: Identifiable {
+  let id = UUID();
+  let label: String;
+  let identifier: String;
+  let images: [String?];
+  let family: String;
+  let categories: [String]
+  
+  init(product: Product, context: CatalogContext) {
+    self.label = product.getLabel(context: context)
+    self.identifier = product.identifier;
+    self.images = [product.getMainImage(context: catalogContext)]
+    self.family = product.getFamilyLabel(context: catalogContext)
+    self.categories = product.categories;
+  }
+  
+  init(label: String, identifier: String, images: [String?], family: String, categories: [String]) {
+    self.label = label
+    self.identifier = identifier;
+    self.images = images
+    self.family = family
+    self.categories = categories
+  }
+}
+
 struct ProductHeader: View {
-  var product: ProductListItem
+  let product: ProductHeaderModel;
   @State var currentPicture: Int = 0;
   @State var isDisplayed = false;
   let isExpanded: Bool
@@ -22,10 +47,12 @@ struct ProductHeader: View {
   var body: some View {
     ZStack {
       ImageSliderView(itemCount: picturesData.count, isReadOnly: !isExpanded || !isDisplayed, currentIndex: self.$currentPicture) {
-        ForEach(0..<picturesData.count) { index in
+        ForEach(0..<self.product.images.count) { index in
           #if os(iOS)
-          Image(uiImage: picturesData[index])
-            .resizable()
+          AsyncImage<Image>(url: self.product.images[index], placeholder: {
+            Image(uiImage: picturesData[0])
+          })
+//            .resizable()
             .scaledToFill()
           #else
           Image(nsImage: picturesData[index])
@@ -75,14 +102,14 @@ struct ProductHeader: View {
         }
         VStack(alignment: .leading, spacing: 0) {
           HStack {
-            Text(product.getLabel(context: catalogContext))
+            Text(product.label)
               .font(.title)
               .fontWeight(.light)
               .lineLimit(1)
               .frame(maxWidth: .infinity, alignment: .bottomLeading)
               .truncationMode(.tail)
             
-            Text(product.getFamilyLabel(context: catalogContext))
+            Text(product.family)
               .padding(.vertical, 2)
               .padding(.horizontal, 8)
               .background(familyColorsData[0])
@@ -104,9 +131,9 @@ struct ProductHeader: View {
 struct ProductHeader_Previews: PreviewProvider {
   static var previews: some View {
     Group {
-      ProductHeader(product: productsData[0], isExpanded: false)
+      ProductHeader(product: ProductHeaderModel(product: productsData[0], context: catalogContext), isExpanded: false)
         .previewLayout(.fixed(width: 400, height: 300))
-      ProductHeader(product: productsData[0], isExpanded: true)
+      ProductHeader(product: ProductHeaderModel(product: productsData[0], context: catalogContext), isExpanded: true)
         .previewLayout(.fixed(width: 400, height: 300))
     }
   }
