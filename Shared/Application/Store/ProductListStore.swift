@@ -8,22 +8,23 @@
 import SwiftUI
 import Combine
 
-class ProductListStore: ObservableObject {
-  @Published var products: [ProductHeaderModel];
+class ProductListStore: ObservableObject, Cancellable {
+  @Published var catalogContext: CatalogContext;
+  @Published var products: [Product];
   
-  init(defaultProducts: [ProductHeaderModel] = []) {
+  init(defaultProducts: [Product] = [], catalogContext: CatalogContext) {
     self.products = defaultProducts;
+    self.catalogContext = catalogContext;
     
-    self.getProductList()
+    AkeneoApi.sharedInstance.product.search(context: catalogContext)
+      .assign(to: \.products, on: self)
+      .store(in: &cancellableSet)
   }
   
-  func getProductList() {
-    AkeneoApi.sharedInstance.getAllProducts(context: catalogContext, onSuccess: { (productList) in
-      self.products = productList.products.map({ (product) -> ProductHeaderModel in
-        return ProductHeaderModel(product: product, context: catalogContext)
-      });
-    }, onFailure: {error in
-      print(error)
-    })
+  var cancellableSet = Set<AnyCancellable>()
+  func cancel() {
+    self.cancellableSet.forEach { (cancellable) in
+      cancellable.cancel()
+    }
   }
 }

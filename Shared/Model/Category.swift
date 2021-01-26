@@ -7,10 +7,8 @@
 
 import SwiftUI
 
-struct Family: Identifiable, Codable, Hashable {
+struct Category: Identifiable, Codable, Hashable {
   var id = UUID();
   let code: String;
   let labels: [String: String];
-  let attributeAsLabel: String;
-  let attributeAsMainImage: String;
 }

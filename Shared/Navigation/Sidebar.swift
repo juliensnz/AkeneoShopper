@@ -8,24 +8,28 @@
 import SwiftUI
 
 struct Sidebar: View {
+  @State var isConfigurationPopoverOpen = false;
+  
   @ViewBuilder
   var body: some View {
     NavigationView {
       #if os(iOS)
       content
-        .toolbar(content: {
-          ToolbarItem(placement: .navigationBarTrailing) {
-            Image(systemName: "gear")
-          }
-        })
         .navigationTitle("Shop")
       #else
       content
         .frame(minWidth: 200, idealWidth: 250, maxWidth: 300)
         .toolbar(content: {
           ToolbarItem(placement: .automatic) {
-            Button(action: {}) {
-              Image(systemName: "gear")
+            HStack {
+              Spacer()
+              Button(action: {
+                self.isConfigurationPopoverOpen = true;
+              }) {
+                Image(systemName: "gear")
+              }.popover(isPresented: self.$isConfigurationPopoverOpen, content: {
+                ApiConfigurationView()
+              })
             }
           }
         })
@@ -40,21 +44,27 @@ struct Sidebar: View {
       NavigationLink(destination: ProductGrid(products: productsData)) {
         Label("Products", systemImage: "doc.text.magnifyingglass")
       }
-//      #if os(iOS) && !targetEnvironment(simulator)
-//      NavigationLink(destination: AugmentedRealityView()) {
-//        Label("Shoppings", systemImage: "bag")
-//      }
-//      #endif
-//      #if os(iOS)
-//      NavigationLink(destination: ProductGrid(products: productsData)) {
-//        Label("AnotherGrid", systemImage: "bag")
-//      }
-//      #endif
-//      #if os(iOS)
-//      NavigationLink(destination: BarcodeScanner()) {
-//        Label("Compare", systemImage: "guitars")
-//      }
-//      #endif
+      
+      #if os(iOS)
+      NavigationLink(destination: ApiConfigurationView()) {
+        Label("Configuration", systemImage: "gear")
+      }
+      #endif
+      //      #if os(iOS) && !targetEnvironment(simulator)
+      //      NavigationLink(destination: AugmentedRealityView()) {
+      //        Label("Shoppings", systemImage: "bag")
+      //      }
+      //      #endif
+      //      #if os(iOS)
+      //      NavigationLink(destination: ProductGrid(products: productsData)) {
+      //        Label("AnotherGrid", systemImage: "bag")
+      //      }
+      //      #endif
+      //      #if os(iOS)
+      //      NavigationLink(destination: BarcodeScanner()) {
+      //        Label("Compare", systemImage: "guitars")
+      //      }
+      //      #endif
     }
     .listStyle(SidebarListStyle())
   }
@@ -68,18 +78,18 @@ struct Sidebar_Previews: PreviewProvider {
 
 
 let productsData = [
-  ProductHeaderModel(label: "FREKVENS Lights", identifier: "FREKVENS Lights", images: [], family: "Music", categories: ["FREKVENS", "Sales", "Party hard"]),
-//  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
-//  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
-//  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
-//  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
-//  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
-//  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
-//  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
-//  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
-//  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
-//  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
-//  ProductListItem(identifier: "FREKVENS Mug", label: "FREKVENS Mug", enabled: true, family: nil, familyCode: "Kitchen", categories: ["FREKVENS"], values: [:])
+  Product(identifier: "FREKVENS Lights", enabled: true, familyCode: "clothing", categoryCodes: ["FREKVENS", "Sales", "Party hard"], rawValues: [:], context: catalogContext),
+  //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
+  //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
+  //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
+  //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
+  //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
+  //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
+  //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
+  //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
+  //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
+  //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
+  //  ProductListItem(identifier: "FREKVENS Mug", label: "FREKVENS Mug", enabled: true, family: nil, familyCode: "Kitchen", categories: ["FREKVENS"], values: [:])
 ].shuffled()
 
 let picturesData = [#imageLiteral(resourceName: "FREKVENS_table"), #imageLiteral(resourceName: "FREKVENS_sofa"), #imageLiteral(resourceName: "FREKVENS_light"), #imageLiteral(resourceName: "FREKVENS_lights"), #imageLiteral(resourceName: "FREKVENS_table"), #imageLiteral(resourceName: "FREKVENS_speaker")].shuffled()

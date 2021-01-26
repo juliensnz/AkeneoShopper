@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CatalogContext {
+struct CatalogContext: Equatable {
   let channel: String;
   let locale: String;
 }

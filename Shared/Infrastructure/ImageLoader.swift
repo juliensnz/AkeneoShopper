@@ -9,34 +9,32 @@ import SwiftUI
 import Combine
 import Foundation
 
-class ImageLoader: ObservableObject {
-  @Published var image: UIImage?
-  private let url: String?
-  private var cancellable: AnyCancellable?
+final class ImageLoader {
+  private let cache: ImageCacheType
+  public static let shared = ImageLoader()
+  private lazy var backgroundQueue: OperationQueue = {
+    let queue = OperationQueue()
+    queue.maxConcurrentOperationCount = 5
+    return queue
+  }()
   
-  init(url: String?) {
-    self.url = url
+  public init(cache: ImageCacheType = ImageCache()) {
+    self.cache = cache
   }
   
-  deinit {
-    cancel()
-  }
-  
-  func load() {
-//    guard let url = self.url else {return}
-//    guard let safeUrl = URL(string: url) else {return}
-//    AkeneoApi.sharedInstance.loadImage(url: safeUrl, onSuccess: { (publisher) in
-//      self.cancellable = publisher
-//        .map { UIImage(data: $0.data) }
-//        .replaceError(with: nil)
-//        .receive(on: DispatchQueue.main)
-//        .sink { [weak self] in self?.image = $0 }
-//    }, onFailure: { (error) in
-//      print(error)
-//    })
-  }
-  
-  func cancel() {
-    cancellable?.cancel()
+  func loadImage(from url: String) -> AnyPublisher<UIImage?, Never> {
+    if let image = cache[url] {
+      return Just(image).eraseToAnyPublisher()
+    }
+    
+    return AkeneoApi.sharedInstance.image.get(url: url)
+      .catch { error in return Just(nil) }
+      .handleEvents(receiveOutput: {[unowned self] image in
+        guard let image = image else { return }
+        self.cache[url] = image
+      })
+      .subscribe(on: backgroundQueue)
+      .receive(on: RunLoop.main)
+      .eraseToAnyPublisher()
   }
 }

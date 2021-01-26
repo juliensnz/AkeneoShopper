@@ -15,8 +15,8 @@ struct ProductGrid: View {
   @State var showBarcodeScanner = false;
   @Namespace var namespace
   
-  init(products: [ProductHeaderModel] = []) {
-    self.productListStore = ProductListStore(defaultProducts: products)
+  init(products: [Product] = []) {
+    self.productListStore = ProductListStore(defaultProducts: products, catalogContext: catalogContext)
   }
   
   var body: some View {
@@ -80,7 +80,7 @@ struct ProductGrid: View {
       ], spacing: 16) {
         ForEach(self.productListStore.products) { product in
           VStack {
-            ProductHeader(product: ProductHeaderModel(product: product, context: catalogContext), isExpanded: false)
+            ProductHeader(product: product, isExpanded: false)
               .matchedGeometryEffect(id: "header_\(product.id)", in: namespace, isSource: self.selectedProduct == nil)
               .frame(height: 250)
               .onTapGesture {
@@ -131,7 +131,7 @@ struct ProductGrid: View {
 struct ProductGrid_Previews: PreviewProvider {
   static var previews: some View {
     Group {
-      ProductGrid(products: ProductList(products: productsData))
+      ProductGrid(products: productsData)
     }
   }
 }

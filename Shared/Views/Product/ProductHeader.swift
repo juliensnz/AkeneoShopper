@@ -7,33 +7,8 @@
 
 import SwiftUI
 
-struct ProductHeaderModel: Identifiable {
-  let id = UUID();
-  let label: String;
-  let identifier: String;
-  let images: [String?];
-  let family: String;
-  let categories: [String]
-  
-  init(product: Product, context: CatalogContext) {
-    self.label = product.getLabel(context: context)
-    self.identifier = product.identifier;
-    self.images = [product.getMainImage(context: catalogContext)]
-    self.family = product.getFamilyLabel(context: catalogContext)
-    self.categories = product.categories;
-  }
-  
-  init(label: String, identifier: String, images: [String?], family: String, categories: [String]) {
-    self.label = label
-    self.identifier = identifier;
-    self.images = images
-    self.family = family
-    self.categories = categories
-  }
-}
-
 struct ProductHeader: View {
-  let product: ProductHeaderModel;
+  @ObservedObject var product: Product;
   @State var currentPicture: Int = 0;
   @State var isDisplayed = false;
   let isExpanded: Bool
@@ -48,17 +23,8 @@ struct ProductHeader: View {
     ZStack {
       ImageSliderView(itemCount: picturesData.count, isReadOnly: !isExpanded || !isDisplayed, currentIndex: self.$currentPicture) {
         ForEach(0..<self.product.images.count) { index in
-          #if os(iOS)
-          AsyncImage<Image>(url: self.product.images[index], placeholder: {
-            Image(uiImage: picturesData[0])
-          })
-//            .resizable()
-            .scaledToFill()
-          #else
-          Image(nsImage: picturesData[index])
-            .resizable()
-            .scaledToFill()
-          #endif
+          AsyncImage(url: self.product.images[index])
+          .scaledToFill()
         }
       }
       VStack {
@@ -109,14 +75,14 @@ struct ProductHeader: View {
               .frame(maxWidth: .infinity, alignment: .bottomLeading)
               .truncationMode(.tail)
             
-            Text(product.family)
+            Text(product.familyLabel)
               .padding(.vertical, 2)
               .padding(.horizontal, 8)
               .background(familyColorsData[0])
               .cornerRadius(8)
           }
           
-          Text(product.categories.joined(separator: ", "))
+          Text(product.categoryLabels.joined(separator: ", "))
         }
         .padding(10)
         .background(VisualEffectBlur())
@@ -131,9 +97,9 @@ struct ProductHeader: View {
 struct ProductHeader_Previews: PreviewProvider {
   static var previews: some View {
     Group {
-      ProductHeader(product: ProductHeaderModel(product: productsData[0], context: catalogContext), isExpanded: false)
+      ProductHeader(product: productsData[0], isExpanded: false)
         .previewLayout(.fixed(width: 400, height: 300))
-      ProductHeader(product: ProductHeaderModel(product: productsData[0], context: catalogContext), isExpanded: true)
+      ProductHeader(product: productsData[0], isExpanded: true)
         .previewLayout(.fixed(width: 400, height: 300))
     }
   }

@@ -28,21 +28,4 @@ class ProductDenormalizer {
       )
     })
   }
-  
-  class func getFamilyCodes(data: JSON) -> [String] {
-    let path: [JSONSubscriptType] = ["_embedded","items"]
-    let items = data[path].arrayValue;
-    
-    return Array(Set(items.map({ (product) -> String in
-      return product["family"].string ?? ""
-    })))
-  }
-  
-  private class func getFamily(families: [Family], code: String) -> Family? {
-    if let familyIndex = families.firstIndex(where: { $0.code == code }) {
-      return families[familyIndex]
-    }
-    
-    return nil
-  }
 }
