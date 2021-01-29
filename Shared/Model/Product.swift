@@ -20,14 +20,14 @@ class Product: Identifiable, Cancellable, ObservableObject {
   @Published var familyLabel: String;
   @Published var categoryLabels: [String];
   @Published var label: String;
+  @Published var attributes: [Attribute]
   
   let enabled: Bool;
   @Published var images: [String] = []
   
   @Published var family: Family? = nil
   @Published var categories: [Category] = []
-  
-  var values: [String: Any] = [:]
+  @Published var values: [ProductValue] = []
   
   init(identifier: String, enabled: Bool, familyCode: String, categoryCodes: [String], rawValues: [String: JSON], context: CatalogContext)
   {
@@ -41,15 +41,18 @@ class Product: Identifiable, Cancellable, ObservableObject {
     self.familyLabel = familyCode;
     self.categoryLabels = categoryCodes;
     self.label = identifier
+    self.attributes = []
+    self.values = []
+    
     
     self.updateFamilyOnCodeChange()
     self.updateFamilyLabelOnFamilyChange()
     self.updateLabelOnFamilyChange()
-    
-    self.updateImagesOnFamilyChange()
-    
     self.updateCategoryOnCodesChange()
     self.updateCategoryLabelsOnCategoryChange()
+    self.updateAttributesOnRawValueChange()
+    self.updateValuesOnAttributesChange()
+    self.updateImagesOnFamilyChange()
   }
   
   func updateFamilyOnCodeChange()
@@ -84,35 +87,47 @@ class Product: Identifiable, Cancellable, ObservableObject {
       .store(in: &cancellableSet)
   }
   
+  func updateAttributesOnRawValueChange()
+  {
+    self.$rawValues
+      .receive(on: RunLoop.main)
+      .map({ updatedValues -> [String] in
+        return Array(updatedValues.keys)
+      })
+      .flatMap { attributeCodes in
+        return AkeneoApi.sharedInstance.attribute.getByCodes(codes: attributeCodes)
+      }
+      .eraseToAnyPublisher()
+      .assign(to: \.attributes, on: self)
+      .store(in: &cancellableSet)
+  }
+  
+  func updateValuesOnAttributesChange()
+  {
+    self.$attributes
+      .receive(on: RunLoop.main)
+      .combineLatest(self.$rawValues) { attributes, rawValues in
+        let values = createValuesFromRawValues(attributes: attributes, rawValues: rawValues)
+        
+        return values
+      }
+      .eraseToAnyPublisher()
+      .assign(to: \.values, on: self)
+      .store(in: &cancellableSet)
+  }
+  
   func updateLabelOnFamilyChange()
   {
     self.$family
       .receive(on: RunLoop.main)
-      .combineLatest(self.$rawValues) { updatedFamily, updatedValues in
-        guard let family = updatedFamily else {
-          return self.familyCode
+      .combineLatest(self.$values, self.$attributes, self.$context) { updatedFamily, updatedValues, updatedAttributes, updatedCatalogContext in
+        guard let family = updatedFamily,
+              let attributeAsLabel = updatedAttributes.first(where: { $0.code == family.attributeAsLabel}),
+           let value = self.getValue(values: updatedValues, attribute: attributeAsLabel, context: updatedCatalogContext) as? TextProductValue else {
+          return self.identifier;
         }
         
-        let attributeAsLabelCode = family.attributeAsLabel;
-        
-        guard let valuesAsLabel = updatedValues[attributeAsLabelCode]?.array else {
-          return self.identifier
-        }
-        
-        guard let labelValueIndex = valuesAsLabel.firstIndex(where: { value in
-          return (
-            nil == value["locale"].string || value["locale"].string == self.context.locale &&
-              nil == value["scope"].string || value["scope"].string == self.context.channel
-          )
-        }) else {
-          return self.identifier
-        }
-        
-        guard let label = valuesAsLabel[labelValueIndex]["data"].string else {
-          return self.identifier
-        }
-        
-        return label
+        return value.stringValue();
       }
       .eraseToAnyPublisher()
       .assign(to: \.label, on: self)
@@ -123,31 +138,15 @@ class Product: Identifiable, Cancellable, ObservableObject {
   {
     self.$family
       .receive(on: RunLoop.main)
-      .combineLatest(self.$rawValues) { (updatedFamily, updatedValues) -> [String] in
-        guard let family = updatedFamily else {
+      .combineLatest(self.$values, self.$attributes) { (family, values, attributes) -> [String] in
+        guard let family = family,
+              let attributeAsMainImage = attributes.first(where: { $0.code == family.attributeAsMainImage}),
+              let value = self.getValue(values: values, attribute: attributeAsMainImage, context: catalogContext) as? ImageProductValue else {
           return []
         }
         
-        let attributeAsMainImageCode = family.attributeAsMainImage;
-        
-        guard let valuesAsMainImage = updatedValues[attributeAsMainImageCode]?.array else {
-          return []
-        }
-        
-        guard let mainImageValueIndex = valuesAsMainImage.firstIndex(where: { value in
-          return (
-            nil == value["locale"].string || value["locale"].string == self.context.locale &&
-              nil == value["scope"].string || value["scope"].string == self.context.channel
-          )
-        }) else {
-          return []
-        }
-        
-        guard let image = valuesAsMainImage[mainImageValueIndex]["links"]["download"]["href"].string else {
-          return []
-        }
-        
-        return [image]
+        print("images updated")
+        return [value.href]
       }
       .eraseToAnyPublisher()
       .assign(to: \.images, on: self)
@@ -163,6 +162,7 @@ class Product: Identifiable, Cancellable, ObservableObject {
       .eraseToAnyPublisher()
       .assign(to: \.categories, on: self)
       .store(in: &cancellableSet)
+      
   }
   
   func updateCategoryLabelsOnCategoryChange()
@@ -181,6 +181,12 @@ class Product: Identifiable, Cancellable, ObservableObject {
       .eraseToAnyPublisher()
       .assign(to: \.categoryLabels, on: self)
       .store(in: &cancellableSet)
+  }
+  
+  func getValue(values: [ProductValue], attribute: Attribute, context: CatalogContext) -> ProductValue? {
+    return values.first { productValue -> Bool in
+      return productValue.match(attribute: attribute, context: context)
+    }
   }
   
   var cancellableSet = Set<AnyCancellable>()

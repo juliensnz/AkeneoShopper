@@ -75,10 +75,13 @@ class AkeneoAccessApi: Cancellable {
           byAdding: .hour,
           value: 1,
           to: Date())
-        
-        onSuccess(data["access_token"].string ?? "");
+        DispatchQueue.main.async {
+          onSuccess(data["access_token"].string ?? "");
+        }
       case ApiResponse.error(let error):
-        onFailure(error)
+        DispatchQueue.main.async {
+          onFailure(error)
+        }
       }
     }.resume();
   }

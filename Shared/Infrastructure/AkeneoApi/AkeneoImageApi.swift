@@ -11,7 +11,7 @@ import Combine
 class AkeneoImageApi {
   func get(url: String) -> AnyPublisher<UIImage?, ApiError> {
     return AkeneoApi.sharedInstance
-      .getUrlRequest(url: URL(string: url)!)
+      .getUrlRequest(url: url)
       .flatMap({ urlRequest in
         return URLSession.shared.dataTaskPublisher(for: urlRequest)
           .mapError({ (error: URLError) -> ApiError in

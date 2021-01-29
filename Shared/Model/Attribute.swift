@@ -7,8 +7,11 @@
 
 import Foundation
 
-struct Category: Identifiable, Codable, Hashable {
+struct Attribute: Identifiable, Codable, Hashable {
   var id = UUID();
   let code: String;
   let labels: [String: String];
+  let type: String;
+  let valuePerChannel: Bool;
+  let valuePerLocale: Bool;
 }

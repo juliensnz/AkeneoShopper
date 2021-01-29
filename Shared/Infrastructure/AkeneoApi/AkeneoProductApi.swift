@@ -29,35 +29,35 @@ class AkeneoProductApi: Cancellable {
       })
       .debounce(for: 0.1, scheduler: RunLoop.main)
       .removeDuplicates()
-      .flatMap { context in
-        return AkeneoApi.sharedInstance.get(url: "/api/rest/v1/products")
-          .catch { error in return Just([]) }
+      .flatMap { context -> AnyPublisher<[Product], ApiError> in
+        let url = "\(AkeneoApi.sharedInstance.access.baseUrl)/api/rest/v1/products";
+        guard var urlComponents = URLComponents(string: url) else {
+          return Fail<[Product], ApiError>(error: ApiError.badUrl(message: "Invalid URL: \(url)"))
+            .eraseToAnyPublisher()
+        }
+        
+        urlComponents.queryItems = [
+          URLQueryItem(name: "with_count", value: "true"),
+          URLQueryItem(name: "limit", value: "1")
+        ];
+        
+        guard let validUrl = urlComponents.url else {
+          return Fail<[Product], ApiError>(error: ApiError.badUrl(message: "Invalid URL: \(url)"))
+            .eraseToAnyPublisher()
+        }
+        
+        return AkeneoApi.sharedInstance.get(url: validUrl)
+          .mapError { error in return ApiError.fetchError(message: error.localizedDescription) }
           .map({ data -> [Product] in
             return ProductDenormalizer.denormalizeAll(data: data, context: context!)
           })
           .eraseToAnyPublisher()
-        
-        
-//        return Future { promise in
-//          self.getAllProducts(context: context!) { (products) in
-//            DispatchQueue.main.async {
-//              promise(.success(products))
-//            }
-//          } onFailure: { (error) in
-//            print(error)
-//          }
-//        }
       }
       .eraseToAnyPublisher()
+      .replaceError(with: [])
       .assign(to: \.products, on: self)
       .store(in: &cancellableSet)
   }
-  
-//  func getAllProducts(context: CatalogContext, onSuccess: @escaping ([Product]) -> (), onFailure: @escaping(String) -> ()) {
-//    AkeneoApi.sharedInstance.get(url: "/api/rest/v1/products", onSuccess: { (data) in
-//      onSuccess(ProductDenormalizer.denormalizeAll(data: data, context: context))
-//    }, onFailure: onFailure)
-//  }
   
   func search(context: CatalogContext) -> Published<[Product]>.Publisher {
     self.context = context

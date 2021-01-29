@@ -77,8 +77,8 @@ struct Sidebar_Previews: PreviewProvider {
 }
 
 
-let productsData = [
-  Product(identifier: "FREKVENS Lights", enabled: true, familyCode: "clothing", categoryCodes: ["FREKVENS", "Sales", "Party hard"], rawValues: [:], context: catalogContext),
+let productsData: [Product] = [
+//  Product(identifier: "FREKVENS Lights", enabled: true, familyCode: "clothing", categoryCodes: ["FREKVENS", "Sales", "Party hard"], rawValues: [:], context: catalogContext),
   //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
   //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),
   //  ProductListItem(identifier: "FREKVENS Plate", label: "FREKVENS Plate", enabled: true, family: nil, familyCode: "Interior", categories: ["FREKVENS"], values: [:]),

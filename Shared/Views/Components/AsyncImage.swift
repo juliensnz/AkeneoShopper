@@ -6,18 +6,30 @@
 //
 
 import SwiftUI
+import Combine
 #if os(iOS)
 import UIKit
 #endif
 
 struct AsyncImage: View {
-  let url: String
+  let url: String?
   @State var image: UIImage = UIImage(imageLiteralResourceName: "placeholder");
   
   var body: some View {
     content
       .onAppear(perform: {
-        _ = ImageLoader.shared.loadImage(from: self.url)
+        _ = Just(self.url)
+          .flatMap { updatedUrl -> AnyPublisher<UIImage?, Never> in
+            guard let nonNilUrl = updatedUrl else {
+              return Just(nil)
+                .eraseToAnyPublisher()
+            }
+            print(nonNilUrl);
+            
+            return AkeneoApi.sharedInstance.image.get(url: nonNilUrl)
+              .catch {error in return Just(nil)}
+              .eraseToAnyPublisher()
+          }
           .replaceNil(with: UIImage(imageLiteralResourceName: "placeholder"))
           .eraseToAnyPublisher()
           .assign(to: \.image, on: self)
@@ -25,7 +37,12 @@ struct AsyncImage: View {
   }
   
   private var content: some View {
+    #if os(iOS)
     return Image(uiImage: self.image)
       .resizable()
+    #else
+    return Image(nsImage: self.image)
+      .resizable()
+    #endif
   }
 }

@@ -34,6 +34,7 @@ class AkeneoApi: Cancellable {
   let family: AkeneoFamilyApi;
   let product: AkeneoProductApi;
   let category: AkeneoCategoryApi;
+  let attribute: AkeneoAttributeApi;
   let image: AkeneoImageApi;
   let access: AkeneoAccessApi;
   
@@ -41,8 +42,33 @@ class AkeneoApi: Cancellable {
     self.family = AkeneoFamilyApi();
     self.product = AkeneoProductApi();
     self.category = AkeneoCategoryApi();
+    self.attribute = AkeneoAttributeApi();
     self.image = AkeneoImageApi();
     self.access = AkeneoAccessApi();
+  }
+  
+  func getUrl(url: String) -> AnyPublisher<URL, ApiError> {
+    let fullUrl = url.starts(with: self.access.baseUrl) ?
+      url :
+      "\(self.access.baseUrl)\(url)";
+    
+    guard let validUrl = URL(string: fullUrl) else {
+      return Fail<URL, ApiError>(error: ApiError.badUrl(message: "Invalid URL: \(url)"))
+        .eraseToAnyPublisher()
+    }
+    
+    //https://stackoverflow.com/questions/57543855/using-just-with-flatmap-produce-failure-mismatch-combine
+    return Just(validUrl)
+      .setFailureType(to: ApiError.self)
+      .eraseToAnyPublisher()
+  }
+  
+  func getUrlRequest(url: String) -> AnyPublisher<URLRequest, ApiError> {
+    return self.getUrl(url: url)
+      .flatMap { validUrl in
+        return self.getUrlRequest(url: validUrl)
+      }
+      .eraseToAnyPublisher()
   }
   
   func getUrlRequest(url: URL) -> AnyPublisher<URLRequest, ApiError> {
@@ -58,12 +84,11 @@ class AkeneoApi: Cancellable {
   }
   
   public func get(url: String) -> AnyPublisher<JSON, ApiError> {
-    guard let validUrl = URL(string: "\(self.access.baseUrl)\(url)") else {
-      return Fail<JSON, ApiError>(error: ApiError.badUrl(message: "Invalid URL: \(url)"))
-        .eraseToAnyPublisher()
-    }
-    
-    return self.get(url: validUrl)
+    return self.getUrl(url: url)
+      .flatMap { validUrl in
+        return self.get(url: validUrl)
+      }
+      .eraseToAnyPublisher()
   }
   
   public func get(url: URL) -> AnyPublisher<JSON, ApiError> {
@@ -72,7 +97,7 @@ class AkeneoApi: Cancellable {
         return Future<JSON, ApiError> { promise in
           URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             let result = ResponseHandler.handleResponse(data: data, response: response, error: error)
-
+            
             switch (result) {
             case ApiResponse.success(let successData):
               DispatchQueue.main.async {

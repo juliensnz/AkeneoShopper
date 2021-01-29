@@ -20,22 +20,28 @@ struct ProductHeader: View {
   #endif
   
   var body: some View {
+    let pictureCount = self.product.images.count;
     ZStack {
-      ImageSliderView(itemCount: picturesData.count, isReadOnly: !isExpanded || !isDisplayed, currentIndex: self.$currentPicture) {
-        ForEach(0..<self.product.images.count) { index in
-          AsyncImage(url: self.product.images[index])
-          .scaledToFill()
+      ImageSliderView(itemCount: pictureCount, isReadOnly: !isExpanded || !isDisplayed, currentIndex: self.$currentPicture) {
+        if (self.product.images.isEmpty) {
+          AsyncImage(url: nil)
+            .scaledToFill()
+        } else {
+          ForEach(self.product.images, id: \.self) { image in
+            AsyncImage(url: image)
+              .scaledToFill()
+          }
         }
       }
       VStack {
         Spacer()
-        if isExpanded {
+        if isExpanded && pictureCount > 0 {
           HStack(alignment: .bottom) {
-            ImageSliderIndicator(currentPage: currentPicture, pageCount: picturesData.count)
+            ImageSliderIndicator(currentPage: currentPicture, pageCount: pictureCount)
             Spacer()
             
             if (!isDraggableDevice) {
-              let isLastPicture = currentPicture == picturesData.count - 1;
+              let isLastPicture = currentPicture == pictureCount - 1;
               let isFirstPicture = currentPicture == 0;
               
               CircularButton(icon: "arrow.left") {
@@ -90,6 +96,7 @@ struct ProductHeader: View {
       }
       .animation(.none)
     }
+    .background(Color.white)
     .clipShape(RoundedRectangle(cornerRadius: self.isExpanded ? 0 : 20, style: .continuous))
   }
 }

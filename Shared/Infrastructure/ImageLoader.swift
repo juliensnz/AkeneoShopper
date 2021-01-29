@@ -29,12 +29,16 @@ final class ImageLoader {
     
     return AkeneoApi.sharedInstance.image.get(url: url)
       .catch { error in return Just(nil) }
-      .handleEvents(receiveOutput: {[unowned self] image in
-        guard let image = image else { return }
-        self.cache[url] = image
-      })
-      .subscribe(on: backgroundQueue)
-      .receive(on: RunLoop.main)
-      .eraseToAnyPublisher()
+      .eraseToAnyPublisher();
+    
+//    return AkeneoApi.sharedInstance.image.get(url: url)
+//      .catch { error in return Just(nil) }
+//      .handleEvents(receiveOutput: {[unowned self] image in
+//        guard let image = image else { return }
+//        self.cache[url] = image
+//      })
+//      .subscribe(on: backgroundQueue)
+//      .receive(on: RunLoop.main)
+//      .eraseToAnyPublisher()
   }
 }

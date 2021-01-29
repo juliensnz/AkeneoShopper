@@ -14,6 +14,14 @@
 		BF4E005225BEE91B00DD131B /* ApiConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4E005025BEE91B00DD131B /* ApiConfigurationView.swift */; };
 		BF69885C25C0432D00EB4DEC /* AkeneoAccessApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69885B25C0432D00EB4DEC /* AkeneoAccessApi.swift */; };
 		BF69885D25C0432D00EB4DEC /* AkeneoAccessApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69885B25C0432D00EB4DEC /* AkeneoAccessApi.swift */; };
+		BF69889325C20B4A00EB4DEC /* AkeneoAttributeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69889225C20B4A00EB4DEC /* AkeneoAttributeApi.swift */; };
+		BF69889425C20B4A00EB4DEC /* AkeneoAttributeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69889225C20B4A00EB4DEC /* AkeneoAttributeApi.swift */; };
+		BF69889A25C20BBE00EB4DEC /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69889925C20BBE00EB4DEC /* Attribute.swift */; };
+		BF69889B25C20BBE00EB4DEC /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69889925C20BBE00EB4DEC /* Attribute.swift */; };
+		BF6988A125C20BFF00EB4DEC /* AttributeDenormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6988A025C20BFF00EB4DEC /* AttributeDenormalizer.swift */; };
+		BF6988A225C20BFF00EB4DEC /* AttributeDenormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6988A025C20BFF00EB4DEC /* AttributeDenormalizer.swift */; };
+		BF6988AC25C220B600EB4DEC /* ProductValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6988AB25C220B600EB4DEC /* ProductValue.swift */; };
+		BF6988AD25C220B600EB4DEC /* ProductValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6988AB25C220B600EB4DEC /* ProductValue.swift */; };
 		BF7D522D25B1E57700499C85 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D522C25B1E57700499C85 /* Tests_iOS.swift */; };
 		BF7D523825B1E57700499C85 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D523725B1E57700499C85 /* Tests_macOS.swift */; };
 		BF7D523A25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D521125B1E57300499C85 /* AkeneoShopperApp.swift */; };
@@ -103,6 +111,10 @@
 		BF3B87C925B396E50008E9FB /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		BF4E005025BEE91B00DD131B /* ApiConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConfigurationView.swift; sourceTree = "<group>"; };
 		BF69885B25C0432D00EB4DEC /* AkeneoAccessApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkeneoAccessApi.swift; sourceTree = "<group>"; };
+		BF69889225C20B4A00EB4DEC /* AkeneoAttributeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkeneoAttributeApi.swift; sourceTree = "<group>"; };
+		BF69889925C20BBE00EB4DEC /* Attribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
+		BF6988A025C20BFF00EB4DEC /* AttributeDenormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeDenormalizer.swift; sourceTree = "<group>"; };
+		BF6988AB25C220B600EB4DEC /* ProductValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductValue.swift; sourceTree = "<group>"; };
 		BF7D521125B1E57300499C85 /* AkeneoShopperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkeneoShopperApp.swift; sourceTree = "<group>"; };
 		BF7D521225B1E57300499C85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BF7D521325B1E57700499C85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -317,6 +329,8 @@
 				BFD64C8F25BB7CF6002C0AD0 /* Family.swift */,
 				BFD64CA625BB8A40002C0AD0 /* Context.swift */,
 				BF99E33225BE1B550025EE6A /* Category.swift */,
+				BF69889925C20BBE00EB4DEC /* Attribute.swift */,
+				BF6988AB25C220B600EB4DEC /* ProductValue.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -366,6 +380,7 @@
 				BF99E32425BE1A6E0025EE6A /* AkeneoCategoryApi.swift */,
 				BFD70DA625BF775500A58753 /* AkeneoImageApi.swift */,
 				BF69885B25C0432D00EB4DEC /* AkeneoAccessApi.swift */,
+				BF69889225C20B4A00EB4DEC /* AkeneoAttributeApi.swift */,
 			);
 			path = AkeneoApi;
 			sourceTree = "<group>";
@@ -376,6 +391,7 @@
 				BFD64C5225BB745B002C0AD0 /* ProductDenormalizer.swift */,
 				BFD64C8425BB7CB1002C0AD0 /* FamilyDenormalizer.swift */,
 				BF99E32B25BE1B290025EE6A /* CategoryDenormalizer.swift */,
+				BF6988A025C20BFF00EB4DEC /* AttributeDenormalizer.swift */,
 			);
 			path = Denormalizer;
 			sourceTree = "<group>";
@@ -570,6 +586,8 @@
 				BF7D523C25B1E57700499C85 /* ContentView.swift in Sources */,
 				BF99E32525BE1A6E0025EE6A /* AkeneoCategoryApi.swift in Sources */,
 				BFFF7CE725B7984400F28E82 /* ProductGrid.swift in Sources */,
+				BF69889325C20B4A00EB4DEC /* AkeneoAttributeApi.swift in Sources */,
+				BF6988AC25C220B600EB4DEC /* ProductValue.swift in Sources */,
 				BF3B874725B33FD10008E9FB /* BlurView.swift in Sources */,
 				BFD64CC125BC3419002C0AD0 /* AsyncImage.swift in Sources */,
 				BF8BA5EB25B608F800F47973 /* AugmentedRealityView.swift in Sources */,
@@ -579,6 +597,7 @@
 				BF7D527325B1EE2D00499C85 /* ProductListStore.swift in Sources */,
 				BF8BA60F25B61C2500F47973 /* ARModel.swift in Sources */,
 				BFE377AC25B8C94C007B1A36 /* VisualEffectBlur.swift in Sources */,
+				BF6988A125C20BFF00EB4DEC /* AttributeDenormalizer.swift in Sources */,
 				BF69885C25C0432D00EB4DEC /* AkeneoAccessApi.swift in Sources */,
 				BFFF7D0725B79D3900F28E82 /* ProductDetails.swift in Sources */,
 				BF7D526025B1E63700499C85 /* Product.swift in Sources */,
@@ -595,6 +614,7 @@
 				BFD64CA725BB8A40002C0AD0 /* Context.swift in Sources */,
 				BF3B87CA25B396E60008E9FB /* Sidebar.swift in Sources */,
 				BF3B872925B310050008E9FB /* ImageSliderView.swift in Sources */,
+				BF69889A25C20BBE00EB4DEC /* Attribute.swift in Sources */,
 				BF99E33325BE1B550025EE6A /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -609,11 +629,13 @@
 				BFD64CC225BC3419002C0AD0 /* AsyncImage.swift in Sources */,
 				BFFF7D2825B7A77500F28E82 /* ProductGrid.swift in Sources */,
 				BFD64CA825BB8A40002C0AD0 /* Context.swift in Sources */,
+				BF6988A225C20BFF00EB4DEC /* AttributeDenormalizer.swift in Sources */,
 				BFD64C9525BB7D18002C0AD0 /* Family.swift in Sources */,
 				BFD70D9D25BF67DE00A58753 /* UIIMage.swift in Sources */,
 				BF8BA5EC25B608F800F47973 /* AugmentedRealityView.swift in Sources */,
 				BFE92CA125B3ABCC00EF173B /* BlurView.swift in Sources */,
 				BF69885D25C0432D00EB4DEC /* AkeneoAccessApi.swift in Sources */,
+				BF6988AD25C220B600EB4DEC /* ProductValue.swift in Sources */,
 				BF4E005225BEE91B00DD131B /* ApiConfigurationView.swift in Sources */,
 				BF99E33425BE1B550025EE6A /* Category.swift in Sources */,
 				BFE3779E25B8C6D8007B1A36 /* ProductHeader.swift in Sources */,
@@ -621,8 +643,10 @@
 				BFE92C8825B3ABC000EF173B /* ContentView.swift in Sources */,
 				BFE92C9725B3ABC800EF173B /* Product.swift in Sources */,
 				BFD64C6725BB7575002C0AD0 /* ResponseHandler.swift in Sources */,
+				BF69889B25C20BBE00EB4DEC /* Attribute.swift in Sources */,
 				BFD64C8A25BB7CB4002C0AD0 /* FamilyDenormalizer.swift in Sources */,
 				BFD64C6225BB7571002C0AD0 /* ProductDenormalizer.swift in Sources */,
+				BF69889425C20B4A00EB4DEC /* AkeneoAttributeApi.swift in Sources */,
 				BFD70DA825BF775500A58753 /* AkeneoImageApi.swift in Sources */,
 				BF99E30025BE0FB50025EE6A /* AkeneoFamilyApi.swift in Sources */,
 				BF99E31725BE129A0025EE6A /* AkeneoProductApi.swift in Sources */,
@@ -720,6 +744,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -773,6 +798,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;

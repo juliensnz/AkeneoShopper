@@ -59,7 +59,8 @@ class AkeneoFamilyApi: Cancellable {
     }
     
     urlComponents.queryItems = [
-      URLQueryItem(name: "search", value: search)
+      URLQueryItem(name: "search", value: search),
+      URLQueryItem(name: "limit", value: "100")
     ];
     
     guard let validUrl = urlComponents.url else {
