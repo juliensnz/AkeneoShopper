@@ -18,21 +18,35 @@ struct AsyncImage: View {
   var body: some View {
     content
       .onAppear(perform: {
-        _ = Just(self.url)
-          .flatMap { updatedUrl -> AnyPublisher<UIImage?, Never> in
-            guard let nonNilUrl = updatedUrl else {
-              return Just(nil)
-                .eraseToAnyPublisher()
-            }
-            print(nonNilUrl);
-            
-            return AkeneoApi.sharedInstance.image.get(url: nonNilUrl)
-              .catch {error in return Just(nil)}
-              .eraseToAnyPublisher()
-          }
+        guard let nonNilUrl = self.url else {
+          return
+        }
+        
+        _ = AkeneoApi.sharedInstance.image.get(url: nonNilUrl)
+          .map({ image in
+            print("image loaded")
+            print(image)
+            return image
+          })
+          .catch {error in return Just(nil)}
           .replaceNil(with: UIImage(imageLiteralResourceName: "placeholder"))
           .eraseToAnyPublisher()
           .assign(to: \.image, on: self)
+        //        _ = Just(self.url)
+        //          .flatMap { updatedUrl -> AnyPublisher<UIImage?, Never> in
+        //            guard let nonNilUrl = updatedUrl else {
+        //              return Just(nil)
+        //                .eraseToAnyPublisher()
+        //            }
+        //            print(nonNilUrl);
+        //
+        //            return AkeneoApi.sharedInstance.image.get(url: nonNilUrl)
+        //              .catch {error in return Just(nil)}
+        //              .eraseToAnyPublisher()
+        //          }
+        //          .replaceNil(with: UIImage(imageLiteralResourceName: "placeholder"))
+        //          .eraseToAnyPublisher()
+        //          .assign(to: \.image, on: self)
       })
   }
   

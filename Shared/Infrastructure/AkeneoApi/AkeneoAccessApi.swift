@@ -15,8 +15,9 @@ class AkeneoAccessApi: Cancellable {
   @AppStorage("user") private var user = ""
   @AppStorage("password") private var password = ""
   
-  var accessToken: String? = nil;
+  @Published var accessToken: String? = nil;
   var validUntil: Date? = nil;
+  var isLoading = false;
   
   var cancellableSet = Set<AnyCancellable>()
   func cancel() {
@@ -26,20 +27,43 @@ class AkeneoAccessApi: Cancellable {
   }
   
   func getAccessToken(force: Bool = false) -> AnyPublisher<String, ApiError> {
-    return Future { promise in
-      self.fetchAccessToken(force: force) { (accessToken) in
-        promise(.success(accessToken))
-      } onFailure: { (message) in
-        promise(.failure(ApiError.badAuth(message: message)))
+    let isInvalid = nil == validUntil || validUntil!.timeIntervalSinceReferenceDate - Date().timeIntervalSinceReferenceDate > 0;
+    
+    if (force || (!self.isLoading && isInvalid)) {
+      self.isLoading = true;
+      
+      return Future { promise in
+        self.fetchAccessToken(force: force) { (accessToken) in
+          DispatchQueue.main.async {
+            promise(.success(accessToken))
+          }
+        } onFailure: { (message) in
+          DispatchQueue.main.async {
+            promise(.failure(ApiError.badAuth(message: message)))
+          }
+        }
       }
-    }.eraseToAnyPublisher()
+      .eraseToAnyPublisher()
+    }
+    
+    return self.$accessToken
+      .drop(while: { (token) -> Bool in
+        return nil == token;
+      })
+      .setFailureType(to: ApiError.self)
+      .flatMap({ accessToken -> AnyPublisher<String, ApiError> in
+        return Just(accessToken!)
+          .setFailureType(to: ApiError.self)
+          .eraseToAnyPublisher();
+      })
+      .eraseToAnyPublisher()
+  }
+  
+  public func updateAccessToken() {
+    _ = self.getAccessToken(force: true);
   }
   
   private func fetchAccessToken(force: Bool = false, onSuccess: @escaping(String) -> (), onFailure: @escaping(String) -> ()) {
-    if (!force && accessToken != nil && validUntil != nil && Date().compare(validUntil!).rawValue > 0) {
-      onSuccess(accessToken!)
-    }
-    
     let authUrl = "\(self.baseUrl)/api/oauth/v1/token";
     guard let url = URL(string: authUrl) else {
       onFailure("Cannot generate url: \(authUrl)")
@@ -67,21 +91,17 @@ class AkeneoAccessApi: Cancellable {
     
     URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
       let result = ResponseHandler.handleResponse(data: data, response: response, error: error)
-        
+      
       switch (result) {
       case ApiResponse.success(let data):
         self.accessToken = data["access_token"].string ?? "";
         self.validUntil = Calendar.current.date(
-          byAdding: .hour,
-          value: 1,
+          byAdding: .second,
+          value: 3600,
           to: Date())
-        DispatchQueue.main.async {
-          onSuccess(data["access_token"].string ?? "");
-        }
+        onSuccess(data["access_token"].string ?? "");
       case ApiResponse.error(let error):
-        DispatchQueue.main.async {
-          onFailure(error)
-        }
+        onFailure(error)
       }
     }.resume();
   }

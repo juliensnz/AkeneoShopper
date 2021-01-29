@@ -59,6 +59,7 @@ class Product: Identifiable, Cancellable, ObservableObject {
   {
     self.$familyCode
       .receive(on: RunLoop.main)
+      .removeDuplicates()
       .flatMap { familyCode in
         return AkeneoApi.sharedInstance.family.get(code: familyCode)
       }
@@ -71,6 +72,7 @@ class Product: Identifiable, Cancellable, ObservableObject {
   {
     self.$family
       .receive(on: RunLoop.main)
+      .removeDuplicates()
       .map { family in
         guard let family = family else {
           return self.familyCode
@@ -91,6 +93,7 @@ class Product: Identifiable, Cancellable, ObservableObject {
   {
     self.$rawValues
       .receive(on: RunLoop.main)
+      .removeDuplicates()
       .map({ updatedValues -> [String] in
         return Array(updatedValues.keys)
       })
@@ -138,6 +141,7 @@ class Product: Identifiable, Cancellable, ObservableObject {
   {
     self.$family
       .receive(on: RunLoop.main)
+      .removeDuplicates()
       .combineLatest(self.$values, self.$attributes) { (family, values, attributes) -> [String] in
         guard let family = family,
               let attributeAsMainImage = attributes.first(where: { $0.code == family.attributeAsMainImage}),
@@ -156,6 +160,7 @@ class Product: Identifiable, Cancellable, ObservableObject {
   func updateCategoryOnCodesChange() {
     self.$categoryCodes
       .receive(on: RunLoop.main)
+      .removeDuplicates()
       .flatMap { categoryCodes in
         return AkeneoApi.sharedInstance.category.getByCodes(codes: categoryCodes)
       }
@@ -169,6 +174,7 @@ class Product: Identifiable, Cancellable, ObservableObject {
   {
     self.$categories
       .receive(on: RunLoop.main)
+      .removeDuplicates()
       .map { categories in
         return categories.map { (category) -> String in
           guard let label = category.labels[self.context.locale] else {

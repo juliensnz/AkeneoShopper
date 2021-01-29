@@ -20,8 +20,6 @@ enum ApiError: Error {
 }
 
 class AkeneoApi: Cancellable {
-  
-  
   static let sharedInstance = AkeneoApi()
   
   var cancellableSet = Set<AnyCancellable>()
@@ -45,6 +43,10 @@ class AkeneoApi: Cancellable {
     self.attribute = AkeneoAttributeApi();
     self.image = AkeneoImageApi();
     self.access = AkeneoAccessApi();
+    DispatchQueue.main.async {
+      self.access.updateAccessToken();
+      self.attribute.fetchAllAttributes();
+    }
   }
   
   func getUrl(url: String) -> AnyPublisher<URL, ApiError> {

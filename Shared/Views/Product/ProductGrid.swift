@@ -44,8 +44,23 @@ struct ProductGrid: View {
             }.sheet(isPresented: $showBarcodeScanner) {
               BarcodeScanner(action: { result in
                 switch result {
-                case .confirm(let code):
-                  print("Barcode confirmed: \(code)")
+                case .confirm(let identifier):
+                  _ = AkeneoApi.sharedInstance.attribute.getIdentifier()
+                    .sink { (attribute) in
+                      
+                      _ = self.productListStore.$products
+                        .print("###########@")
+                        .filter { $0.count == 1 }
+                        .map({ products -> Product in
+                          return products[0]
+                        })
+                        .assign(to: \.selectedProduct, on: self)
+                      
+                      self.productListStore.addFilter(filter: TextValueFilter(attribute: attribute, filter: Operator.equal, value: identifier))
+                      print("add filter");
+                      
+                    }
+                  print("Barcode confirmed: \(identifier)")
                 default:
                   print("Barcode scanner dismissed")
                 }
@@ -61,11 +76,11 @@ struct ProductGrid: View {
         content
         fullContent
           .background(VisualEffectBlur().edgesIgnoringSafeArea(.all)
-          .onTapGesture {
-            withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
-              self.dismissModal()
-            }
-          })
+                        .onTapGesture {
+                          withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+                            self.dismissModal()
+                          }
+                        })
       }
       .navigationTitle("Products")
       #endif
@@ -74,30 +89,37 @@ struct ProductGrid: View {
   
   @ViewBuilder
   var content: some View {
-    ScrollView {
-      LazyVGrid(columns: [
-        GridItem(.adaptive(minimum: 300), spacing: 16)
-      ], spacing: 16) {
-        ForEach(self.productListStore.products) { product in
-          VStack {
-            ProductHeader(product: product, isExpanded: false)
-              .matchedGeometryEffect(id: "header_\(product.id)", in: namespace, isSource: self.selectedProduct == nil)
-              .frame(height: 250)
-              .onTapGesture {
-                withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
-                  self.selectedProduct = product
-                  self.isGridDisabled = true
+    VStack {
+      ForEach(self.productListStore.valueFilters, id: \.self.id) { valueFilter in
+        FilterDisplayView(filter: valueFilter, catalogContext: self.productListStore.catalogContext, onRemove: {
+          self.productListStore.removeFilter(filter: valueFilter)
+        })
+      }
+      ScrollView {
+        LazyVGrid(columns: [
+          GridItem(.adaptive(minimum: 300), spacing: 16)
+        ], spacing: 16) {
+          ForEach(self.productListStore.products) { product in
+            VStack {
+              ProductHeader(product: product, isExpanded: false)
+                .matchedGeometryEffect(id: "header_\(product.id)", in: namespace, isSource: self.selectedProduct == nil)
+                .frame(height: 250)
+                .onTapGesture {
+                  withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+                    self.selectedProduct = product
+                    self.isGridDisabled = true
+                  }
                 }
-              }
-              .disabled(self.isGridDisabled)
+                .disabled(self.isGridDisabled)
+            }
           }
         }
+        .padding(.horizontal)
+        .padding(.bottom)
+        .padding(.top)
       }
-      .padding(.horizontal)
-      .padding(.bottom)
-      .padding(.top)
+      .zIndex(1)
     }
-    .zIndex(1)
   }
   
   @ViewBuilder

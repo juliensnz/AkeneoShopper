@@ -14,4 +14,12 @@ struct Attribute: Identifiable, Codable, Hashable {
   let type: String;
   let valuePerChannel: Bool;
   let valuePerLocale: Bool;
+  
+  func getLabel(locale: String) -> String {
+    guard let label = self.labels[locale] else {
+      return self.code;
+    }
+    
+    return label
+  }
 }

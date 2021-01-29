@@ -10,6 +10,7 @@ import Combine
 
 class AkeneoProductApi: Cancellable {
   @Published var context: CatalogContext?;
+  @Published var valueFilters: [ValueFilter];
   @Published var products: [Product] = []
   
   var cancellableSet = Set<AnyCancellable>()
@@ -21,6 +22,7 @@ class AkeneoProductApi: Cancellable {
   
   init() {
     self.context = nil
+    self.valueFilters = []
     
     self.$context
       .receive(on: RunLoop.main)
@@ -29,7 +31,8 @@ class AkeneoProductApi: Cancellable {
       })
       .debounce(for: 0.1, scheduler: RunLoop.main)
       .removeDuplicates()
-      .flatMap { context -> AnyPublisher<[Product], ApiError> in
+      .combineLatest(self.$valueFilters)
+      .flatMap { (context, valueFilters) -> AnyPublisher<[Product], ApiError> in
         let url = "\(AkeneoApi.sharedInstance.access.baseUrl)/api/rest/v1/products";
         guard var urlComponents = URLComponents(string: url) else {
           return Fail<[Product], ApiError>(error: ApiError.badUrl(message: "Invalid URL: \(url)"))
@@ -38,8 +41,12 @@ class AkeneoProductApi: Cancellable {
         
         urlComponents.queryItems = [
           URLQueryItem(name: "with_count", value: "true"),
-          URLQueryItem(name: "limit", value: "1")
+          URLQueryItem(name: "limit", value: "100")
         ];
+        
+        if (!valueFilters.isEmpty) {
+          urlComponents.queryItems?.append(URLQueryItem(name: "search", value: encodeFilters(valueFilters: valueFilters)))
+        }
         
         guard let validUrl = urlComponents.url else {
           return Fail<[Product], ApiError>(error: ApiError.badUrl(message: "Invalid URL: \(url)"))
@@ -59,8 +66,9 @@ class AkeneoProductApi: Cancellable {
       .store(in: &cancellableSet)
   }
   
-  func search(context: CatalogContext) -> Published<[Product]>.Publisher {
+  func search(context: CatalogContext, valueFilters: [ValueFilter]) -> Published<[Product]>.Publisher {
     self.context = context
+    self.valueFilters = valueFilters
     
     return self.$products
   }
