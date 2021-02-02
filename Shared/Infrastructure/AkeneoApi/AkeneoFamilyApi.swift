@@ -37,7 +37,10 @@ class AkeneoFamilyApi: Cancellable {
       .flatMap { familyCodes in
         return self.getFamiliesByCode(familyCodes: familyCodes)
       }
-      .replaceError(with: [])
+      .catch({ (error) -> Just<[Family]> in
+        print("Error occured during family fetching: \(error.localizedDescription)")
+        return Just([])
+      })
       .map({ (newFamilies: [Family]) -> [Family] in
         return Array(Set(newFamilies + self.families))
       })

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import SDWebImageSwiftUI
 
 class AkeneoAccessApi: Cancellable {
   @AppStorage("baseUrl") public private(set) var baseUrl = ""
@@ -30,11 +31,12 @@ class AkeneoAccessApi: Cancellable {
     let isInvalid = nil == validUntil || validUntil!.timeIntervalSinceReferenceDate - Date().timeIntervalSinceReferenceDate > 0;
     
     if (force || (!self.isLoading && isInvalid)) {
-      self.isLoading = true;
-      
-      return Future { promise in
+      self.isLoading = true
+      Future { promise in
         self.fetchAccessToken(force: force) { (accessToken) in
           DispatchQueue.main.async {
+            SDWebImageDownloader.shared.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+            
             promise(.success(accessToken))
           }
         } onFailure: { (message) in
@@ -43,7 +45,10 @@ class AkeneoAccessApi: Cancellable {
           }
         }
       }
+      .replaceError(with: nil)
       .eraseToAnyPublisher()
+      .assign(to: \.accessToken, on: self)
+      .store(in: &cancellableSet)
     }
     
     return self.$accessToken
@@ -60,7 +65,7 @@ class AkeneoAccessApi: Cancellable {
   }
   
   public func updateAccessToken() {
-    _ = self.getAccessToken(force: true);
+    //_ = self.getAccessToken(force: true);
   }
   
   private func fetchAccessToken(force: Bool = false, onSuccess: @escaping(String) -> (), onFailure: @escaping(String) -> ()) {
@@ -91,6 +96,7 @@ class AkeneoAccessApi: Cancellable {
     
     URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
       let result = ResponseHandler.handleResponse(data: data, response: response, error: error)
+      print("Error updating access token: \(String(describing: error?.localizedDescription))")
       
       switch (result) {
       case ApiResponse.success(let data):
@@ -101,6 +107,7 @@ class AkeneoAccessApi: Cancellable {
           to: Date())
         onSuccess(data["access_token"].string ?? "");
       case ApiResponse.error(let error):
+        print("Error updating access token: \(String(describing: error))")
         onFailure(error)
       }
     }.resume();

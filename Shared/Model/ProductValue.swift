@@ -20,14 +20,44 @@ protocol ProductValue {
   var locale: String? { get };
   func stringValue() -> String
   func match(attribute: Attribute, context: CatalogContext) -> Bool
+  func uniqueId() -> String
 }
 
 extension ProductValue {
   func match(attribute: Attribute, context: CatalogContext) -> Bool {
     let channelMatches = !attribute.valuePerChannel || self.channel == context.channel
     let localeMatches = !attribute.valuePerLocale || self.locale == context.locale
-
+    
     return channelMatches && localeMatches && attribute.code == self.attribute.code
+  }
+  
+  func uniqueId() -> String {
+    let locale = nil == self.locale ? "" : "-" + (self.locale ?? "")
+    let channel = nil == self.channel ? "" : "-" + (self.channel ?? "")
+    
+    return "\(self.attribute.code)\(locale)\(channel)"
+  }
+}
+
+//https://stackoverflow.com/questions/39048963/creating-a-protocol-that-represents-hashable-objects-that-can-be-on-or-off
+struct IdentifiableProductValue: ProductValue, Identifiable {
+  let id = UUID();
+  let value: ProductValue;
+  
+  var type: ProductValueType { get {
+    return self.value.type
+  } };
+  var attribute: Attribute { get {
+    return self.value.attribute
+  } }
+  var channel: String? { get {
+    return self.value.channel
+  } };
+  var locale: String? { get {
+    return self.value.locale
+  } };
+  func stringValue() -> String {
+    return self.value.stringValue()
   }
 }
 
@@ -71,16 +101,16 @@ class ImageProductValue: ProductValue {
   }
 }
 
-func createValuesFromRawValues(attributes: [Attribute], rawValues: [String: JSON]) -> [ProductValue] {
+func createValuesFromRawValues(attributes: [Attribute], rawValues: [String: JSON]) -> [IdentifiableProductValue] {
   let valueKeys = Array(rawValues.keys);
   
-  return valueKeys.reduce([ProductValue]()) { result, attributeCode in
+  return valueKeys.reduce([IdentifiableProductValue]()) { result, attributeCode in
     guard let attributeValues = rawValues[attributeCode],
           let values = attributeValues.array else {
       return result
     }
     
-    return result + values.map({ value -> ProductValue? in
+    return result + values.map({ value -> IdentifiableProductValue? in
       guard let attribute = attributes.first(where: { $0.code == attributeCode}) else {
         return nil
       }
@@ -94,7 +124,13 @@ func createValuesFromRawValues(attributes: [Attribute], rawValues: [String: JSON
           return nil
         }
         
-        return TextProductValue(attribute: attribute, channel: channel, locale: locale, text: text)
+        return IdentifiableProductValue(value: TextProductValue(attribute: attribute, channel: channel, locale: locale, text: text))
+      case "pim_catalog_textarea":
+        guard let text = value["data"].string else {
+          return nil
+        }
+        
+        return IdentifiableProductValue(value: TextProductValue(attribute: attribute, channel: channel, locale: locale, text: text))
       case "pim_catalog_image":
         guard let code = value["data"].string else {
           return nil
@@ -103,7 +139,7 @@ func createValuesFromRawValues(attributes: [Attribute], rawValues: [String: JSON
           return nil
         }
         
-        return ImageProductValue(attribute: attribute, channel: channel, locale: locale, code: code, href: href)
+        return IdentifiableProductValue(value: ImageProductValue(attribute: attribute, channel: channel, locale: locale, code: code, href: href))
       default:
         return nil
       }

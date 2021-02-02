@@ -15,8 +15,8 @@ struct ProductGrid: View {
   @State var showBarcodeScanner = false;
   @Namespace var namespace
   
-  init(products: [Product] = []) {
-    self.productListStore = ProductListStore(defaultProducts: products, catalogContext: catalogContext)
+  init(products: [Product] = [], catalogContext: CatalogContext = CatalogContext(channel: "ecormerce", locale: "en_US"), valueFilters: [ValueFilter] = []) {
+    self.productListStore = ProductListStore(defaultProducts: products, catalogContext: catalogContext, valueFilters: valueFilters)
   }
   
   var body: some View {
@@ -37,7 +37,7 @@ struct ProductGrid: View {
       }
       .navigationBarTitle("Products")
       .toolbar(content: {
-        ToolbarItem(placement: .navigationBarTrailing) {
+        ToolbarItem {
           Image(systemName: "barcode")
             .onTapGesture {
               self.showBarcodeScanner = true
@@ -76,11 +76,11 @@ struct ProductGrid: View {
         content
         fullContent
           .background(VisualEffectBlur().edgesIgnoringSafeArea(.all)
-                        .onTapGesture {
-                          withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
-                            self.dismissModal()
-                          }
-                        })
+          .onTapGesture {
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+              self.dismissModal()
+            }
+          })
       }
       .navigationTitle("Products")
       #endif
@@ -90,12 +90,18 @@ struct ProductGrid: View {
   @ViewBuilder
   var content: some View {
     VStack {
-      ForEach(self.productListStore.valueFilters, id: \.self.id) { valueFilter in
-        FilterDisplayView(filter: valueFilter, catalogContext: self.productListStore.catalogContext, onRemove: {
-          self.productListStore.removeFilter(filter: valueFilter)
-        })
-      }
+      HStack {
+        ForEach(self.productListStore.valueFilters, id: \.self.id) { valueFilter in
+          FilterDisplayView(filter: valueFilter, catalogContext: self.productListStore.catalogContext, onRemove: {
+            self.productListStore.removeFilter(filter: valueFilter)
+          })
+        }
+        Spacer()
+      }.padding(5)
+      
       ScrollView {
+        
+        
         LazyVGrid(columns: [
           GridItem(.adaptive(minimum: 300), spacing: 16)
         ], spacing: 16) {
@@ -118,15 +124,17 @@ struct ProductGrid: View {
         .padding(.bottom)
         .padding(.top)
       }
-      .zIndex(1)
+      
+      
     }
+    .zIndex(1)
   }
   
   @ViewBuilder
   var fullContent: some View {
     if let product = self.selectedProduct {
       ZStack(alignment: .topTrailing) {
-        ProductDetails(namespace: namespace, product: product)
+        ProductDetails(namespace: namespace, product: product, catalogContext: self.productListStore.catalogContext)
         
         CircularButton(icon: "xmark") {
           withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
@@ -153,7 +161,13 @@ struct ProductGrid: View {
 struct ProductGrid_Previews: PreviewProvider {
   static var previews: some View {
     Group {
-      ProductGrid(products: productsData)
+      ProductGrid(products: productsData, catalogContext: catalogContext, valueFilters: [TextValueFilter(attribute: Attribute(
+        code: "identifier",
+        labels: ["en_US": "Identifier"],
+        type: "pim_catalog_identifier",
+        valuePerChannel: false,
+        valuePerLocale: false
+      ), filter: Operator.equal, value: "9780761178972")])
     }
   }
 }

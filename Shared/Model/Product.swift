@@ -27,7 +27,7 @@ class Product: Identifiable, Cancellable, ObservableObject {
   
   @Published var family: Family? = nil
   @Published var categories: [Category] = []
-  @Published var values: [ProductValue] = []
+  @Published var values: [IdentifiableProductValue] = []
   
   init(identifier: String, enabled: Bool, familyCode: String, categoryCodes: [String], rawValues: [String: JSON], context: CatalogContext)
   {
@@ -126,7 +126,7 @@ class Product: Identifiable, Cancellable, ObservableObject {
       .combineLatest(self.$values, self.$attributes, self.$context) { updatedFamily, updatedValues, updatedAttributes, updatedCatalogContext in
         guard let family = updatedFamily,
               let attributeAsLabel = updatedAttributes.first(where: { $0.code == family.attributeAsLabel}),
-           let value = self.getValue(values: updatedValues, attribute: attributeAsLabel, context: updatedCatalogContext) as? TextProductValue else {
+              let value = self.getValue(values: updatedValues, attribute: attributeAsLabel, context: updatedCatalogContext)?.value as? TextProductValue else {
           return self.identifier;
         }
         
@@ -145,11 +145,10 @@ class Product: Identifiable, Cancellable, ObservableObject {
       .combineLatest(self.$values, self.$attributes) { (family, values, attributes) -> [String] in
         guard let family = family,
               let attributeAsMainImage = attributes.first(where: { $0.code == family.attributeAsMainImage}),
-              let value = self.getValue(values: values, attribute: attributeAsMainImage, context: catalogContext) as? ImageProductValue else {
+              let value = self.getValue(values: values, attribute: attributeAsMainImage, context: catalogContext)?.value as? ImageProductValue else {
           return []
         }
         
-        print("images updated")
         return [value.href]
       }
       .eraseToAnyPublisher()
@@ -189,7 +188,7 @@ class Product: Identifiable, Cancellable, ObservableObject {
       .store(in: &cancellableSet)
   }
   
-  func getValue(values: [ProductValue], attribute: Attribute, context: CatalogContext) -> ProductValue? {
+  func getValue(values: [IdentifiableProductValue], attribute: Attribute, context: CatalogContext) -> IdentifiableProductValue? {
     return values.first { productValue -> Bool in
       return productValue.match(attribute: attribute, context: context)
     }

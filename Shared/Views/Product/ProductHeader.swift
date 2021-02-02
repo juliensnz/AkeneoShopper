@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ProductHeader: View {
   @ObservedObject var product: Product;
   @State var currentPicture: Int = 0;
   @State var isDisplayed = false;
+  @State var liked = false;
   let isExpanded: Bool
   
   #if os(iOS)
@@ -24,16 +26,28 @@ struct ProductHeader: View {
     ZStack {
       ImageSliderView(itemCount: pictureCount, isReadOnly: !isExpanded || !isDisplayed, currentIndex: self.$currentPicture) {
         if (self.product.images.isEmpty) {
-          AsyncImage(url: nil)
+          Image("placeholder")
             .scaledToFill()
         } else {
           ForEach(self.product.images, id: \.self) { image in
-            AsyncImage(url: image)
-              .scaledToFill()
+//            WebImage(url: URL(string: image))
+//            AkeneoImage(url: image, placeholder: Image("placeholder"))
+//              .scaledToFill()
           }
         }
       }
       VStack {
+        HStack {
+          Spacer()
+          Button(action: {
+            liked.toggle()
+          }) {
+              Image(systemName: "heart.fill")
+                .foregroundColor(self.liked ? Color.red : Color.white)
+                .shadow(color: Color.black.opacity(0.5), radius: 1)
+                .font(.title)
+          }
+        }.padding()
         Spacer()
         if isExpanded && pictureCount > 0 {
           HStack(alignment: .bottom) {
@@ -85,7 +99,7 @@ struct ProductHeader: View {
               .padding(.vertical, 2)
               .padding(.horizontal, 8)
               .background(familyColorsData[0])
-              .cornerRadius(8)
+              .clipShape(Capsule())
           }
           
           Text(product.categoryLabels.joined(separator: ", "))

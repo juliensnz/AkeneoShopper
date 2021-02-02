@@ -8,6 +8,13 @@
 import SwiftUI
 import Combine
 
+
+//@AppStorage("baseUrl") var baseUrl = "http://ped.test:8080"
+//@AppStorage("clientID") var clientID = "1_16d23okvhfb44ccgo8s4wgoo8swocokcgsk0c0o4c084k00ks4"
+//@AppStorage("secret") var secret = "2crnhds1wx5wocwsg4sw0cgwo0w0sckwcokg8go4sck8c44cso"
+//@AppStorage("user") var user = "magento_0000"
+//@AppStorage("password") var password = "2dpuj5tx4w4d"
+
 class AkeneoAttributeApi: Cancellable {
   @Published var attributeCodesToLoad: [String] = [];
   @Published var attributes: [Attribute] = []
@@ -37,7 +44,10 @@ class AkeneoAttributeApi: Cancellable {
       .flatMap { attributeCodes in
         return self.getAttributesByCode(attributeCodes: attributeCodes)
       }
-      .replaceError(with: [])
+      .catch({ (error) -> Just<[Attribute]> in
+        print("Error occured during attribute fetching: \(error.localizedDescription)")
+        return Just([])
+      })
       .map({ (newAttributes: [Attribute]) -> [Attribute] in
         return Array(Set(newAttributes + self.attributes))
       })

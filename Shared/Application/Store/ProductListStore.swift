@@ -13,10 +13,10 @@ class ProductListStore: ObservableObject, Cancellable {
   @Published var products: [Product];
   @Published var valueFilters: [ValueFilter];
   
-  init(defaultProducts: [Product] = [], catalogContext: CatalogContext) {
+  init(defaultProducts: [Product] = [], catalogContext: CatalogContext, valueFilters: [ValueFilter]) {
     self.products = defaultProducts;
     self.catalogContext = catalogContext;
-    self.valueFilters = [];
+    self.valueFilters = valueFilters;
     
     self.$valueFilters
       .combineLatest(self.$catalogContext)

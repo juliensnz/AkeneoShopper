@@ -13,6 +13,12 @@ struct FilterDisplayView: View {
   var onRemove: () -> Void;
   @State var isOpen = true;
   
+  #if os(iOS)
+  let blur = VisualEffectBlur(blurStyle: .systemMaterialLight);
+  #else
+  let blur = VisualEffectBlur();
+  #endif
+  
   var body: some View {
     HStack(spacing: 0) {
       HStack(spacing: 3) {
@@ -30,9 +36,9 @@ struct FilterDisplayView: View {
         self.isOpen.toggle()
       }, label: {
         Image(systemName: "xmark")
-          .font(.system(size: 11))
+//          .font(.system(size: 13))
           .padding(8)
-          .background(VisualEffectBlur())
+          .background(blur)
           .clipShape(Circle())
           .onTapGesture {
             self.isOpen = false
@@ -42,7 +48,7 @@ struct FilterDisplayView: View {
               }
             }
           }
-      })
+      }).buttonStyle(BorderlessButtonStyle())
     }
     .padding(.leading, self.isOpen ? 14 : 2)
     .padding(.trailing, 2)

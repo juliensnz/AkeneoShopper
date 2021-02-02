@@ -65,20 +65,22 @@ class AkeneoApi: Cancellable {
       .eraseToAnyPublisher()
   }
   
-  func getUrlRequest(url: String) -> AnyPublisher<URLRequest, ApiError> {
+  func getUrlRequest(url: String, isJson: Bool = true) -> AnyPublisher<URLRequest, ApiError> {
     return self.getUrl(url: url)
       .flatMap { validUrl in
-        return self.getUrlRequest(url: validUrl)
+        return self.getUrlRequest(url: validUrl, isJson: isJson)
       }
       .eraseToAnyPublisher()
   }
   
-  func getUrlRequest(url: URL) -> AnyPublisher<URLRequest, ApiError> {
+  func getUrlRequest(url: URL, isJson: Bool = true) -> AnyPublisher<URLRequest, ApiError> {
     return self.access.getAccessToken()
       .map { (accessToken) -> URLRequest in
         var urlRequest = URLRequest(url: url);
         urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        if (isJson) {
+          urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
         
         return urlRequest
       }

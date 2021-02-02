@@ -22,15 +22,14 @@ final class ImageLoader {
     self.cache = cache
   }
   
-  func loadImage(from url: String) -> AnyPublisher<UIImage?, Never> {
-    if let image = cache[url] {
-      return Just(image).eraseToAnyPublisher()
-    }
-    
-    return AkeneoApi.sharedInstance.image.get(url: url)
-      .catch { error in return Just(nil) }
-      .eraseToAnyPublisher();
-    
+//  func loadImage(from url: String) -> AnyPublisher<UIImage, Never> {
+//    if let image = cache[url] {
+//      return Just(image).eraseToAnyPublisher()
+//    }
+//
+//    return AkeneoApi.sharedInstance.image.get(url: url)
+//      .eraseToAnyPublisher();
+//
 //    return AkeneoApi.sharedInstance.image.get(url: url)
 //      .catch { error in return Just(nil) }
 //      .handleEvents(receiveOutput: {[unowned self] image in
@@ -40,5 +39,5 @@ final class ImageLoader {
 //      .subscribe(on: backgroundQueue)
 //      .receive(on: RunLoop.main)
 //      .eraseToAnyPublisher()
-  }
+//  }
 }

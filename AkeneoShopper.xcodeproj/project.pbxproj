@@ -61,8 +61,6 @@
 		BFD64CA825BB8A40002C0AD0 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD64CA625BB8A40002C0AD0 /* Context.swift */; };
 		BFD64CBA25BC33F7002C0AD0 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD64CB925BC33F7002C0AD0 /* ImageLoader.swift */; };
 		BFD64CBB25BC33F7002C0AD0 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD64CB925BC33F7002C0AD0 /* ImageLoader.swift */; };
-		BFD64CC125BC3419002C0AD0 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD64CC025BC3419002C0AD0 /* AsyncImage.swift */; };
-		BFD64CC225BC3419002C0AD0 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD64CC025BC3419002C0AD0 /* AsyncImage.swift */; };
 		BFD70D8825BF311C00A58753 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = BFD70D8725BF311C00A58753 /* SwiftyJSON */; };
 		BFD70D8E25BF66AF00A58753 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD70D8D25BF66AF00A58753 /* ImageCache.swift */; };
 		BFD70D8F25BF66AF00A58753 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD70D8D25BF66AF00A58753 /* ImageCache.swift */; };
@@ -86,6 +84,12 @@
 		BFE92C9725B3ABC800EF173B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7D525F25B1E63700499C85 /* Product.swift */; };
 		BFE92C9C25B3ABCA00EF173B /* ImageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B872825B310050008E9FB /* ImageSliderView.swift */; };
 		BFE92CA125B3ABCC00EF173B /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B874625B33FD10008E9FB /* BlurView.swift */; };
+		BFEA94B625C8BB4C0068D792 /* ProductValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA94B525C8BB4C0068D792 /* ProductValueView.swift */; };
+		BFEA94B725C8BB4C0068D792 /* ProductValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA94B525C8BB4C0068D792 /* ProductValueView.swift */; };
+		BFEA94BD25C8C02D0068D792 /* LocaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA94BC25C8C02D0068D792 /* LocaleView.swift */; };
+		BFEA94BE25C8C02D0068D792 /* LocaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA94BC25C8C02D0068D792 /* LocaleView.swift */; };
+		BFEA94CD25C9CBAF0068D792 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = BFEA94CC25C9CBAF0068D792 /* SDWebImageSwiftUI */; };
+		BFEA94D325C9CBC80068D792 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = BFEA94D225C9CBC80068D792 /* SDWebImageSwiftUI */; };
 		BFFF7CE725B7984400F28E82 /* ProductGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFF7CE625B7984400F28E82 /* ProductGrid.swift */; };
 		BFFF7D0725B79D3900F28E82 /* ProductDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFF7D0625B79D3900F28E82 /* ProductDetails.swift */; };
 		BFFF7D0825B79D3900F28E82 /* ProductDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFF7D0625B79D3900F28E82 /* ProductDetails.swift */; };
@@ -151,7 +155,6 @@
 		BFD64C8F25BB7CF6002C0AD0 /* Family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
 		BFD64CA625BB8A40002C0AD0 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		BFD64CB925BC33F7002C0AD0 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		BFD64CC025BC3419002C0AD0 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		BFD70D8D25BF66AF00A58753 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		BFD70D9C25BF67DE00A58753 /* UIIMage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIIMage.swift; sourceTree = "<group>"; };
 		BFD70DA625BF775500A58753 /* AkeneoImageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkeneoImageApi.swift; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 		BFE377DB25B8E487007B1A36 /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
 		BFE4157E25C4880100FA9888 /* ValueFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueFilter.swift; sourceTree = "<group>"; };
 		BFE4159125C4B98600FA9888 /* FilterDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDisplayView.swift; sourceTree = "<group>"; };
+		BFEA94B525C8BB4C0068D792 /* ProductValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductValueView.swift; sourceTree = "<group>"; };
+		BFEA94BC25C8C02D0068D792 /* LocaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleView.swift; sourceTree = "<group>"; };
 		BFFF7CE625B7984400F28E82 /* ProductGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGrid.swift; sourceTree = "<group>"; };
 		BFFF7D0625B79D3900F28E82 /* ProductDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFEA94CD25C9CBAF0068D792 /* SDWebImageSwiftUI in Frameworks */,
 				BFD64C4425BB55AA002C0AD0 /* SwiftyJSON in Frameworks */,
 				BF8BA62125B63BD300F47973 /* CarBode in Frameworks */,
 			);
@@ -179,6 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFEA94D325C9CBC80068D792 /* SDWebImageSwiftUI in Frameworks */,
 				BFD70D8825BF311C00A58753 /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,8 +216,8 @@
 				BF8BA60E25B61C2500F47973 /* ARModel.swift */,
 				BF8BA62625B63BE400F47973 /* BarcodeScanner.swift */,
 				BFE377EA25B8ED4D007B1A36 /* Button */,
-				BFD64CC025BC3419002C0AD0 /* AsyncImage.swift */,
 				BFE4159125C4B98600FA9888 /* FilterDisplayView.swift */,
+				BFEA94BC25C8C02D0068D792 /* LocaleView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -325,6 +332,7 @@
 				BFFF7CE625B7984400F28E82 /* ProductGrid.swift */,
 				BFFF7D0625B79D3900F28E82 /* ProductDetails.swift */,
 				BFE3779C25B8C6D8007B1A36 /* ProductHeader.swift */,
+				BFEA94B525C8BB4C0068D792 /* ProductValueView.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -438,6 +446,7 @@
 			packageProductDependencies = (
 				BF8BA62025B63BD300F47973 /* CarBode */,
 				BFD64C4325BB55AA002C0AD0 /* SwiftyJSON */,
+				BFEA94CC25C9CBAF0068D792 /* SDWebImageSwiftUI */,
 			);
 			productName = "AkeneoShopper (iOS)";
 			productReference = BF7D521825B1E57700499C85 /* AkeneoShopper.app */;
@@ -458,6 +467,7 @@
 			name = "AkeneoShopper (macOS)";
 			packageProductDependencies = (
 				BFD70D8725BF311C00A58753 /* SwiftyJSON */,
+				BFEA94D225C9CBC80068D792 /* SDWebImageSwiftUI */,
 			);
 			productName = "AkeneoShopper (macOS)";
 			productReference = BF7D522025B1E57700499C85 /* AkeneoShopper.app */;
@@ -536,6 +546,7 @@
 			packageReferences = (
 				BF8BA61F25B63BD300F47973 /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */,
 				BFD64C4225BB55AA002C0AD0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				BFEA94CB25C9CBAF0068D792 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = BF7D521925B1E57700499C85 /* Products */;
 			projectDirPath = "";
@@ -598,13 +609,13 @@
 				BF69889325C20B4A00EB4DEC /* AkeneoAttributeApi.swift in Sources */,
 				BF6988AC25C220B600EB4DEC /* ProductValue.swift in Sources */,
 				BF3B874725B33FD10008E9FB /* BlurView.swift in Sources */,
-				BFD64CC125BC3419002C0AD0 /* AsyncImage.swift in Sources */,
 				BF8BA5EB25B608F800F47973 /* AugmentedRealityView.swift in Sources */,
 				BFD70DA725BF775500A58753 /* AkeneoImageApi.swift in Sources */,
 				BF99E31625BE129A0025EE6A /* AkeneoProductApi.swift in Sources */,
 				BF4E005125BEE91B00DD131B /* ApiConfigurationView.swift in Sources */,
 				BF7D527325B1EE2D00499C85 /* ProductListStore.swift in Sources */,
 				BF8BA60F25B61C2500F47973 /* ARModel.swift in Sources */,
+				BFEA94BD25C8C02D0068D792 /* LocaleView.swift in Sources */,
 				BFE377AC25B8C94C007B1A36 /* VisualEffectBlur.swift in Sources */,
 				BF6988A125C20BFF00EB4DEC /* AttributeDenormalizer.swift in Sources */,
 				BF69885C25C0432D00EB4DEC /* AkeneoAccessApi.swift in Sources */,
@@ -614,6 +625,7 @@
 				BF99E32C25BE1B290025EE6A /* CategoryDenormalizer.swift in Sources */,
 				BFE3779D25B8C6D8007B1A36 /* ProductHeader.swift in Sources */,
 				BF7D526B25B1E7CD00499C85 /* AkeneoApi.swift in Sources */,
+				BFEA94B625C8BB4C0068D792 /* ProductValueView.swift in Sources */,
 				BFD64CBA25BC33F7002C0AD0 /* ImageLoader.swift in Sources */,
 				BFD64C5D25BB7525002C0AD0 /* ResponseHandler.swift in Sources */,
 				BFD64C9025BB7CF6002C0AD0 /* Family.swift in Sources */,
@@ -636,11 +648,11 @@
 				BF99E32D25BE1B290025EE6A /* CategoryDenormalizer.swift in Sources */,
 				BFE377B225B8C958007B1A36 /* VisualEffectBlur.swift in Sources */,
 				BFE92C8325B3ABBE00EF173B /* Sidebar.swift in Sources */,
-				BFD64CC225BC3419002C0AD0 /* AsyncImage.swift in Sources */,
 				BFFF7D2825B7A77500F28E82 /* ProductGrid.swift in Sources */,
 				BFD64CA825BB8A40002C0AD0 /* Context.swift in Sources */,
 				BF6988A225C20BFF00EB4DEC /* AttributeDenormalizer.swift in Sources */,
 				BFD64C9525BB7D18002C0AD0 /* Family.swift in Sources */,
+				BFEA94BE25C8C02D0068D792 /* LocaleView.swift in Sources */,
 				BFD70D9D25BF67DE00A58753 /* UIIMage.swift in Sources */,
 				BF8BA5EC25B608F800F47973 /* AugmentedRealityView.swift in Sources */,
 				BFE92CA125B3ABCC00EF173B /* BlurView.swift in Sources */,
@@ -653,6 +665,7 @@
 				BFE92C8825B3ABC000EF173B /* ContentView.swift in Sources */,
 				BFE92C9725B3ABC800EF173B /* Product.swift in Sources */,
 				BFD64C6725BB7575002C0AD0 /* ResponseHandler.swift in Sources */,
+				BFEA94B725C8BB4C0068D792 /* ProductValueView.swift in Sources */,
 				BF69889B25C20BBE00EB4DEC /* Attribute.swift in Sources */,
 				BFD64C8A25BB7CB4002C0AD0 /* FamilyDenormalizer.swift in Sources */,
 				BFD64C6225BB7571002C0AD0 /* ProductDenormalizer.swift in Sources */,
@@ -1067,6 +1080,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		BFEA94CB25C9CBAF0068D792 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1084,6 +1105,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BFD64C4225BB55AA002C0AD0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		BFEA94CC25C9CBAF0068D792 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BFEA94CB25C9CBAF0068D792 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		BFEA94D225C9CBC80068D792 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BFEA94CB25C9CBAF0068D792 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

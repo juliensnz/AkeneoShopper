@@ -15,12 +15,11 @@ struct Sidebar: View {
     NavigationView {
       #if os(iOS)
       content
-        .navigationTitle("Shop")
       #else
       content
         .frame(minWidth: 200, idealWidth: 250, maxWidth: 300)
         .toolbar(content: {
-          ToolbarItem(placement: .automatic) {
+          ToolbarItem {
             HStack {
               Spacer()
               Button(action: {

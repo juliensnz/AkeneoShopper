@@ -10,6 +10,7 @@ import SwiftUI
 struct ProductDetails: View {
   var namespace: Namespace.ID;
   var product: Product;
+  let catalogContext: CatalogContext;
   var imageCount = 5;
   let pictures = [#imageLiteral(resourceName: "FREKVENS_table"), #imageLiteral(resourceName: "FREKVENS_sofa"), #imageLiteral(resourceName: "FREKVENS_light"), #imageLiteral(resourceName: "FREKVENS_lights"), #imageLiteral(resourceName: "FREKVENS_table"), #imageLiteral(resourceName: "FREKVENS_speaker")]
   
@@ -39,12 +40,12 @@ struct ProductDetails: View {
             .matchedGeometryEffect(id: "header_\(product.id)", in: namespace)
           
           VStack {
-            Text("\(product.identifier)")
-            Text("\(product.identifier)")
-            Text("\(product.identifier)")
-            Text("\(product.identifier)")
-            Text("\(product.identifier)")
-            Text("\(product.identifier)")
+            ForEach (product.values) { value in
+              VStack(alignment: .leading) {
+                ProductValueView(value: value, catalogContext: self.catalogContext)
+                Divider()
+              }.padding(.horizontal, 8)
+            }
             Spacer()
           }
         }
@@ -59,6 +60,6 @@ struct ProductDetails_Previews: PreviewProvider {
   @Namespace static var namespace;
   
   static var previews: some View {
-    ProductDetails(namespace: namespace, product: productsData[0])
+    ProductDetails(namespace: namespace, product: productsData[0], catalogContext: catalogContext)
   }
 }

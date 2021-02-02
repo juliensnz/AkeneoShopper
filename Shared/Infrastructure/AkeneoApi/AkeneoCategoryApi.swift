@@ -37,7 +37,10 @@ class AkeneoCategoryApi: Cancellable {
       .flatMap { categoryCodes in
         return self.getCategoriesByCode(categoryCodes: categoryCodes)
       }
-      .replaceError(with: [])
+      .catch({ (error) -> Just<[Category]> in
+        print("Error occured during category fetching: \(error.localizedDescription)")
+        return Just([])
+      })
       .map({ (newCategories: [Category]) -> [Category] in
         return Array(Set(newCategories + self.categories))
       })

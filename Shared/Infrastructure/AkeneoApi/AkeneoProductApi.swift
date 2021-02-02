@@ -61,7 +61,10 @@ class AkeneoProductApi: Cancellable {
           .eraseToAnyPublisher()
       }
       .eraseToAnyPublisher()
-      .replaceError(with: [])
+      .catch({ (error) -> Just<[Product]> in
+        print("Error occured during product fetching: \(error.localizedDescription)")
+        return Just([])
+      })
       .assign(to: \.products, on: self)
       .store(in: &cancellableSet)
   }
