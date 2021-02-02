@@ -106,17 +106,12 @@ struct ProductGrid: View {
           GridItem(.adaptive(minimum: 300), spacing: 16)
         ], spacing: 16) {
           ForEach(self.productListStore.products) { product in
-            VStack {
-              ProductHeader(product: product, isExpanded: false)
-                .matchedGeometryEffect(id: "header_\(product.id)", in: namespace, isSource: self.selectedProduct == nil)
-                .frame(height: 250)
-                .onTapGesture {
-                  withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
-                    self.selectedProduct = product
-                    self.isGridDisabled = true
-                  }
-                }
-                .disabled(self.isGridDisabled)
+            ProductCard(product: product, isSource: self.selectedProduct == nil, namespace: namespace, isDisabled: self.isGridDisabled)
+            .onTapGesture {
+              withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+                self.selectedProduct = product
+                self.isGridDisabled = true
+              }
             }
           }
         }
@@ -134,14 +129,11 @@ struct ProductGrid: View {
   var fullContent: some View {
     if let product = self.selectedProduct {
       ZStack(alignment: .topTrailing) {
-        ProductDetails(namespace: namespace, product: product, catalogContext: self.productListStore.catalogContext)
-        
-        CircularButton(icon: "xmark") {
+        ProductDetails(namespace: namespace, product: product, catalogContext: self.productListStore.catalogContext, onClose: {
           withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
             self.dismissModal()
           }
-        }
-        .padding(8)
+        })
       }
       .zIndex(3)
       .padding(currentDeviceIsIpad ? 16 : 0)
@@ -169,5 +161,22 @@ struct ProductGrid_Previews: PreviewProvider {
         valuePerLocale: false
       ), filter: Operator.equal, value: "9780761178972")])
     }
+  }
+}
+
+struct ProductCard: View {
+  let product: Product;
+  let isSource: Bool;
+  let namespace: Namespace.ID;
+  let isDisabled: Bool;
+  
+  var body: some View {
+    VStack {
+      ProductHeader(product: product)
+        .matchedGeometryEffect(id: "header_\(product.id)", in: namespace, isSource: isSource)
+        .frame(height: 250)
+        .disabled(isDisabled)
+    }
+//    .matchedGeometryEffect(id: "container_\(product.id)", in: namespace, isSource: isSource)
   }
 }

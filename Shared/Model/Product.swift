@@ -44,6 +44,7 @@ class Product: Identifiable, Cancellable, ObservableObject {
     self.attributes = []
     self.values = []
     
+    print("load product \(identifier)")
     
     self.updateFamilyOnCodeChange()
     self.updateFamilyLabelOnFamilyChange()

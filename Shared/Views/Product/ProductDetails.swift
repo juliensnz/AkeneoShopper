@@ -11,6 +11,7 @@ struct ProductDetails: View {
   var namespace: Namespace.ID;
   var product: Product;
   let catalogContext: CatalogContext;
+  let onClose: () -> Void
   var imageCount = 5;
   let pictures = [#imageLiteral(resourceName: "FREKVENS_table"), #imageLiteral(resourceName: "FREKVENS_sofa"), #imageLiteral(resourceName: "FREKVENS_light"), #imageLiteral(resourceName: "FREKVENS_lights"), #imageLiteral(resourceName: "FREKVENS_table"), #imageLiteral(resourceName: "FREKVENS_speaker")]
   
@@ -35,10 +36,9 @@ struct ProductDetails: View {
     VStack {
       ScrollView {
         VStack {
-          ProductHeader(product: product, isExpanded: true)
+          ProductHeader(product: product, onClose: self.onClose)
             .frame(height: 400)
             .matchedGeometryEffect(id: "header_\(product.id)", in: namespace)
-          
           VStack {
             ForEach (product.values) { value in
               VStack(alignment: .leading) {
@@ -51,8 +51,9 @@ struct ProductDetails: View {
         }
       }
     }
-    .background(Color.white)
+    .background(Color("background_medium"))
     .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+    .matchedGeometryEffect(id: "container_\(product.id)", in: namespace)
   }
 }
 
@@ -60,6 +61,8 @@ struct ProductDetails_Previews: PreviewProvider {
   @Namespace static var namespace;
   
   static var previews: some View {
-    ProductDetails(namespace: namespace, product: productsData[0], catalogContext: catalogContext)
+    ProductDetails(namespace: namespace, product: productsData[0], catalogContext: catalogContext, onClose: {
+      print("Closed")
+    })
   }
 }
