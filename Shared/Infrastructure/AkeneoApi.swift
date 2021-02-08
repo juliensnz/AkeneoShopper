@@ -33,7 +33,6 @@ class AkeneoApi: Cancellable {
   let product: AkeneoProductApi;
   let category: AkeneoCategoryApi;
   let attribute: AkeneoAttributeApi;
-  let image: AkeneoImageApi;
   let access: AkeneoAccessApi;
   
   init() {
@@ -41,7 +40,6 @@ class AkeneoApi: Cancellable {
     self.product = AkeneoProductApi();
     self.category = AkeneoCategoryApi();
     self.attribute = AkeneoAttributeApi();
-    self.image = AkeneoImageApi();
     self.access = AkeneoAccessApi();
     DispatchQueue.main.async {
       self.access.updateAccessToken();

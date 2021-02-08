@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ProductGrid: View {
+  #if os(iOS)
+  @Environment(\.horizontalSizeClass) var horizontalSizeClass
+  #endif
+  
   @ObservedObject var productListStore: ProductListStore;
   
   @State var selectedProduct: Product? = nil
@@ -35,7 +39,6 @@ struct ProductGrid: View {
                 }
               })
       }
-      .navigationBarTitle("Products")
       .toolbar(content: {
         ToolbarItem {
           Image(systemName: "barcode")
@@ -47,15 +50,6 @@ struct ProductGrid: View {
                 case .confirm(let identifier):
                   _ = AkeneoApi.sharedInstance.attribute.getIdentifier()
                     .sink { (attribute) in
-                      
-                      _ = self.productListStore.$products
-                        .print("###########@")
-                        .filter { $0.count == 1 }
-                        .map({ products -> Product in
-                          return products[0]
-                        })
-                        .assign(to: \.selectedProduct, on: self)
-                      
                       self.productListStore.addFilter(filter: TextValueFilter(attribute: attribute, filter: Operator.equal, value: identifier))
                       print("add filter");
                       
@@ -89,7 +83,7 @@ struct ProductGrid: View {
   
   @ViewBuilder
   var content: some View {
-    VStack {
+    VStack(spacing: 0) {
       HStack {
         ForEach(self.productListStore.valueFilters, id: \.self.id) { valueFilter in
           FilterDisplayView(filter: valueFilter, catalogContext: self.productListStore.catalogContext, onRemove: {
@@ -97,11 +91,10 @@ struct ProductGrid: View {
           })
         }
         Spacer()
-      }.padding(5)
+      }.padding(self.productListStore.valueFilters.isEmpty ? 0 : 5)
+      .animation(.easeInOut)
       
       ScrollView {
-        
-        
         LazyVGrid(columns: [
           GridItem(.adaptive(minimum: 300), spacing: 16)
         ], spacing: 16) {

@@ -34,7 +34,12 @@ struct Sidebar: View {
         })
       #endif
       
+      #if os(iOS)
       ProductGrid(products: [])
+        .navigationBarTitle("Products")
+      #else
+      ProductGrid(products: [])
+      #endif
     }
   }
   
