@@ -23,6 +23,7 @@ class Product: Identifiable, Cancellable, ObservableObject {
   @Published var attributes: [Attribute]
   
   let enabled: Bool;
+  let familyColor: Double
   @Published var images: [String] = []
   
   @Published var family: Family? = nil
@@ -34,6 +35,7 @@ class Product: Identifiable, Cancellable, ObservableObject {
     self.identifier = identifier;
     self.enabled = enabled;
     self.familyCode = familyCode;
+    self.familyColor = Double(abs(familyCode.hashValue) % 1000) / 1000.0
     self.rawValues = rawValues;
     self.categoryCodes = categoryCodes;
     self.context = context;
@@ -43,6 +45,8 @@ class Product: Identifiable, Cancellable, ObservableObject {
     self.label = identifier
     self.attributes = []
     self.values = []
+    
+    print("family hash: \(self.familyColor)")
     
     print("load product \(identifier)")
     

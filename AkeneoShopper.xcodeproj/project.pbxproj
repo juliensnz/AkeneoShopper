@@ -12,6 +12,8 @@
 		BF3B87CA25B396E60008E9FB /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B87C925B396E50008E9FB /* Sidebar.swift */; };
 		BF4E005125BEE91B00DD131B /* ApiConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4E005025BEE91B00DD131B /* ApiConfigurationView.swift */; };
 		BF4E005225BEE91B00DD131B /* ApiConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4E005025BEE91B00DD131B /* ApiConfigurationView.swift */; };
+		BF5FFB1C25D1E4CC00F4765D /* ProductCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FFB1B25D1E4CC00F4765D /* ProductCard.swift */; };
+		BF5FFB1D25D1E4CC00F4765D /* ProductCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FFB1B25D1E4CC00F4765D /* ProductCard.swift */; };
 		BF69885C25C0432D00EB4DEC /* AkeneoAccessApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69885B25C0432D00EB4DEC /* AkeneoAccessApi.swift */; };
 		BF69885D25C0432D00EB4DEC /* AkeneoAccessApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69885B25C0432D00EB4DEC /* AkeneoAccessApi.swift */; };
 		BF69889325C20B4A00EB4DEC /* AkeneoAttributeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69889225C20B4A00EB4DEC /* AkeneoAttributeApi.swift */; };
@@ -117,6 +119,7 @@
 		BF3B874625B33FD10008E9FB /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		BF3B87C925B396E50008E9FB /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		BF4E005025BEE91B00DD131B /* ApiConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConfigurationView.swift; sourceTree = "<group>"; };
+		BF5FFB1B25D1E4CC00F4765D /* ProductCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCard.swift; sourceTree = "<group>"; };
 		BF69885B25C0432D00EB4DEC /* AkeneoAccessApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkeneoAccessApi.swift; sourceTree = "<group>"; };
 		BF69889225C20B4A00EB4DEC /* AkeneoAttributeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkeneoAttributeApi.swift; sourceTree = "<group>"; };
 		BF69889925C20BBE00EB4DEC /* Attribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
@@ -333,6 +336,7 @@
 				BFFF7D0625B79D3900F28E82 /* ProductDetails.swift */,
 				BFE3779C25B8C6D8007B1A36 /* ProductHeader.swift */,
 				BFEA94B525C8BB4C0068D792 /* ProductValueView.swift */,
+				BF5FFB1B25D1E4CC00F4765D /* ProductCard.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -621,6 +625,7 @@
 				BFFF7D0725B79D3900F28E82 /* ProductDetails.swift in Sources */,
 				BF7D526025B1E63700499C85 /* Product.swift in Sources */,
 				BFE4157F25C4880100FA9888 /* ValueFilter.swift in Sources */,
+				BF5FFB1C25D1E4CC00F4765D /* ProductCard.swift in Sources */,
 				BF99E32C25BE1B290025EE6A /* CategoryDenormalizer.swift in Sources */,
 				BFE3779D25B8C6D8007B1A36 /* ProductHeader.swift in Sources */,
 				BF7D526B25B1E7CD00499C85 /* AkeneoApi.swift in Sources */,
@@ -661,6 +666,7 @@
 				BF99E33425BE1B550025EE6A /* Category.swift in Sources */,
 				BFE3779E25B8C6D8007B1A36 /* ProductHeader.swift in Sources */,
 				BF7D523B25B1E57700499C85 /* AkeneoShopperApp.swift in Sources */,
+				BF5FFB1D25D1E4CC00F4765D /* ProductCard.swift in Sources */,
 				BFE92C8825B3ABC000EF173B /* ContentView.swift in Sources */,
 				BFE92C9725B3ABC800EF173B /* Product.swift in Sources */,
 				BFD64C6725BB7575002C0AD0 /* ResponseHandler.swift in Sources */,

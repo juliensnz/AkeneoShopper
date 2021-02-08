@@ -96,10 +96,10 @@ struct ProductGrid: View {
       
       ScrollView {
         LazyVGrid(columns: [
-          GridItem(.adaptive(minimum: 300), spacing: 16)
+          GridItem(.adaptive(minimum: currentDeviceIsIphone ? 150 : 300), spacing: 16)
         ], spacing: 16) {
           ForEach(self.productListStore.products) { product in
-            ProductCard(product: product, isSource: self.selectedProduct == nil, namespace: namespace, isDisabled: self.isGridDisabled)
+            ProductCard(product: product)
             .onTapGesture {
               withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                 self.selectedProduct = product
@@ -154,22 +154,5 @@ struct ProductGrid_Previews: PreviewProvider {
         valuePerLocale: false
       ), filter: Operator.equal, value: "9780761178972")])
     }
-  }
-}
-
-struct ProductCard: View {
-  let product: Product;
-  let isSource: Bool;
-  let namespace: Namespace.ID;
-  let isDisabled: Bool;
-  
-  var body: some View {
-    VStack {
-      ProductHeader(product: product)
-        .matchedGeometryEffect(id: "header_\(product.id)", in: namespace, isSource: isSource)
-        .frame(height: 250)
-        .disabled(isDisabled)
-    }
-//    .matchedGeometryEffect(id: "container_\(product.id)", in: namespace, isSource: isSource)
   }
 }
