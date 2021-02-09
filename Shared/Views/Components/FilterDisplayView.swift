@@ -56,7 +56,7 @@ struct FilterDisplayView: View {
     .foregroundColor(Color.black)
     .background(Color.orange)
     .clipShape(
-      RoundedRectangle(cornerRadius: 15, style: .continuous)
+      Capsule()
     )
     .animation(Animation.easeInOut(duration: 0.3))
     .opacity(self.isOpen ? 1 : 0)

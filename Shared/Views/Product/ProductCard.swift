@@ -19,7 +19,11 @@ struct ProductCard: View {
           self.image
             .frame(maxWidth: geometry.size.width - 16, maxHeight: 200)
             .background(VisualEffectBlur())
-            .cornerRadius(15)
+            .overlay(
+              RoundedRectangle(cornerRadius: 15)
+                .stroke(Color(hue: product.familyColor, saturation: 0.43, brightness: 0.70), lineWidth: 2)
+            )
+            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
           
           VStack {
             Text(product.familyLabel)

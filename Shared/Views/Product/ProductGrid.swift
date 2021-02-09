@@ -12,10 +12,12 @@ struct ProductGrid: View {
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
   #endif
   
+  @Environment(\.colorScheme) var colorScheme
+  
   @ObservedObject var productListStore: ProductListStore;
   
   @State var selectedProduct: Product? = nil
-  @State var isGridDisabled = false;
+  @State var productDisplayed = false;
   @State var showBarcodeScanner = false;
   @Namespace var namespace
   
@@ -26,57 +28,36 @@ struct ProductGrid: View {
   var body: some View {
     ZStack {
       #if os(iOS)
-      ZStack {
-        content
-          .navigationBarHidden(selectedProduct != nil)
-        fullContent
-          .background(
-            VisualEffectBlur(blurStyle: .systemUltraThinMaterial)
-              .edgesIgnoringSafeArea(.all)
+      content
+        .toolbar(content: {
+          ToolbarItem {
+            Image(systemName: "barcode")
               .onTapGesture {
-                withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
-                  self.dismissModal()
-                }
-              })
-      }
-      .toolbar(content: {
-        ToolbarItem {
-          Image(systemName: "barcode")
-            .onTapGesture {
-              self.showBarcodeScanner = true
-            }.sheet(isPresented: $showBarcodeScanner) {
-              BarcodeScanner(action: { result in
-                switch result {
-                case .confirm(let identifier):
-                  _ = AkeneoApi.sharedInstance.attribute.getIdentifier()
-                    .sink { (attribute) in
-                      self.productListStore.addFilter(filter: TextValueFilter(attribute: attribute, filter: Operator.equal, value: identifier))
-                      print("add filter");
-                      
-                    }
-                  print("Barcode confirmed: \(identifier)")
-                default:
-                  print("Barcode scanner dismissed")
-                }
-                
-                self.showBarcodeScanner = false
-              })
-            }
-        }
-      })
+                self.showBarcodeScanner = true
+              }.sheet(isPresented: $showBarcodeScanner) {
+                BarcodeScanner(action: { result in
+                  switch result {
+                  case .confirm(let identifier):
+                    _ = AkeneoApi.sharedInstance.attribute.getIdentifier()
+                      .sink { (attribute) in
+                        self.productListStore.addFilter(filter: TextValueFilter(attribute: attribute, filter: Operator.equal, value: identifier))
+                        print("add filter");
+                        
+                      }
+                    print("Barcode confirmed: \(identifier)")
+                  default:
+                    print("Barcode scanner dismissed")
+                  }
+                  
+                  self.showBarcodeScanner = false
+                })
+              }
+          }
+        })
       
       #else
-      ZStack {
-        content
-        fullContent
-          .background(VisualEffectBlur().edgesIgnoringSafeArea(.all)
-          .onTapGesture {
-            withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
-              self.dismissModal()
-            }
-          })
-      }
-      .navigationTitle("Products")
+      content
+        .navigationTitle("Products")
       #endif
     }
   }
@@ -100,46 +81,27 @@ struct ProductGrid: View {
         ], spacing: 16) {
           ForEach(self.productListStore.products) { product in
             ProductCard(product: product)
-            .onTapGesture {
-              withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+              .sheet(isPresented: self.$productDisplayed, content: {
+                ProductDetails(product: self.$selectedProduct, catalogContext: self.productListStore.catalogContext, onClose: {
+                  withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+                    self.productDisplayed = false
+                    self.selectedProduct = nil;
+                  }
+                })
+              })
+              .onTapGesture {
+                print("on tap")
                 self.selectedProduct = product
-                self.isGridDisabled = true
+                self.productDisplayed = true
               }
-            }
+              .shadow(color: Color(hue: product.familyColor, saturation: 0.43, brightness: 0.70).opacity(self.colorScheme == .dark ? 0.1 : 0.2), radius: 15, x: 0, y: 10)
           }
         }
         .padding(.horizontal)
         .padding(.bottom)
         .padding(.top)
       }
-      
-      
     }
-    .zIndex(1)
-  }
-  
-  @ViewBuilder
-  var fullContent: some View {
-    if let product = self.selectedProduct {
-      ZStack(alignment: .topTrailing) {
-        ProductDetails(namespace: namespace, product: product, catalogContext: self.productListStore.catalogContext, onClose: {
-          withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
-            self.dismissModal()
-          }
-        })
-      }
-      .zIndex(3)
-      .padding(currentDeviceIsIpad ? 16 : 0)
-      .frame(maxWidth: 712)
-      .frame(maxWidth: .infinity)
-    }
-  }
-  
-  func dismissModal() {
-    self.selectedProduct = nil
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
-      self.isGridDisabled = false
-    })
   }
 }
 

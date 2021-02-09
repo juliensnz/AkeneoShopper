@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ProductDetails: View {
-  var namespace: Namespace.ID;
-  var product: Product;
+  @Binding var product: Product?;
   let catalogContext: CatalogContext;
   let onClose: () -> Void
   var imageCount = 5;
@@ -25,44 +24,48 @@ struct ProductDetails: View {
   var body: some View {
     #if os(iOS)
     content
-      .edgesIgnoringSafeArea(.all)
+//      .edgesIgnoringSafeArea(.all)
     #else
-    content
+    content.frame(minWidth: 800, idealWidth: 1000, maxWidth: .infinity, minHeight: 600, idealHeight: 800, maxHeight: .infinity, alignment: .center)
     #endif
   }
   
   @ViewBuilder
   var content: some View {
     VStack {
-      ScrollView {
-        VStack {
-          ProductHeader(product: product, onClose: self.onClose)
-            .frame(height: 400)
-            .matchedGeometryEffect(id: "header_\(product.id)", in: namespace)
+      if let product = self.product {
+        ScrollView {
           VStack {
-            ForEach (product.values) { value in
-              VStack(alignment: .leading) {
-                ProductValueView(value: value, catalogContext: self.catalogContext)
-                Divider()
-              }.padding(.horizontal, 8)
+            ProductHeader(product: product, onClose: self.onClose)
+              .frame(height: 400)
+            VStack {
+              ForEach (product.values) { value in
+                VStack(alignment: .leading) {
+                  ProductValueView(value: value, catalogContext: self.catalogContext)
+                  Divider()
+                }.padding(.horizontal, 8)
+              }
+              Spacer()
             }
-            Spacer()
           }
+        }
+      } else {
+        VStack {
+          Text("Loading...")
         }
       }
     }
     .background(Color("background_medium"))
-    .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
-    .matchedGeometryEffect(id: "container_\(product.id)", in: namespace)
   }
 }
-
-struct ProductDetails_Previews: PreviewProvider {
-  @Namespace static var namespace;
-  
-  static var previews: some View {
-    ProductDetails(namespace: namespace, product: productsData[0], catalogContext: catalogContext, onClose: {
-      print("Closed")
-    })
-  }
-}
+//
+//struct ProductDetails_Previews: PreviewProvider {
+//  @Namespace static var namespace;
+//
+//  static var previews: some View {
+//    ProductDetails(product: productsData[0], catalogContext: catalogContext, onClose: {
+//      print("Closed")
+//    })
+//    .previewLayout(.fixed(width: 500.0, height: 1000.0))
+//  }
+//}

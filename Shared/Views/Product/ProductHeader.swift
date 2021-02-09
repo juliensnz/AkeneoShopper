@@ -15,12 +15,6 @@ struct ProductHeader: View {
   @State var isDisplayed = false;
   @State var liked = false;
   
-  #if os(iOS)
-  let hasNotch = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.safeAreaInsets.bottom ?? 0 > 0
-  #else
-  let hasNotch = false;
-  #endif
-  
   var body: some View {
     let pictureCount = self.product.images.count;
     let isExpanded = onClose != nil
@@ -52,7 +46,6 @@ struct ProductHeader: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
             .padding(8)
-            .padding(.top, hasNotch ? 44 : nil)
           } else {
             #if os(iOS)
             Button(action: {
